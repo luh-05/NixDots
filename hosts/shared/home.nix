@@ -132,7 +132,7 @@ in
     brave
     ranger
     steam
-    spotify
+    #spotify
     meson
     ninja
     gcc
@@ -158,7 +158,6 @@ in
     bibata-cursors
 
     eww
-    spotifyd
     bash
     (pkgs.callPackage "${hmmp}/fonts/feather-font.nix" { })
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Iosevka" "JetBrainsMono" ]; }) 

@@ -32,7 +32,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    swww.url = "github:LGFae/swww";
+    #swww.url = "github:LGFae/swww";
 
     plugin-aerial-nvim = {
       url = "github:stevearc/aerial.nvim";
@@ -57,9 +57,10 @@
         #gitsigns-nvim.follows = "plugin-gitsigns-nvim";
       };
     };
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
-  outputs = { self, nixpkgs, nvf, ... }@inputs:
+  outputs = { self, nixpkgs, nvf, spicetify-nix, ... }@inputs:
     let
      customNeovim = 
             nvf.lib.neovimConfiguration {
@@ -95,6 +96,7 @@
                 #./hosts/${hostName}/home.nix
                 inputs.stylix.nixosModules.stylix
                 #nvf.nixosModules.default
+                inputs.spicetify-nix.nixosModules.default
               ] ++ extraModules;
           };
         };

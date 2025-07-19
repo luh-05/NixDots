@@ -11,6 +11,7 @@ in {
       "${hmmp}/hyprland/default.nix" 
       "${hmmp}/wofi/default.nix"
       "${hmmp}/kitty/default.nix"
+      "${hmmp}/helix/default.nix"
       #"${hmmp}/alvr/default.nix"
       #"${hmmp}/nvf/main.nix"
       #"${hmmp}/swww/default.nix"
@@ -54,7 +55,7 @@ in {
     #jq # A lightweight and flexible command-line JSON processor yq-go # yaml processor https://github.com/mikefarah/yq
     eza # A modern replacement for ‘ls’ fzf
     # A command-line fuzzy finder
-    zoxide thefuck tmux
+    zoxide tmux
 
     # networking tools mtr # A network diagnostic tool iperf3 dnsutils # `dig` + `nslookup` ldns # replacement of `dig`, it provide the command `drill` aria2 # A 
     #lightweight multi-protocol & multi-source command-line download utility socat # replacement of openbsd-netcat nmap # A utility for network discovery and 
@@ -82,7 +83,7 @@ in {
     #neovim nixvim discord webcord
     pavucontrol obs-studio qt5Full gst_all_1.gstreamer
     #xdg-desktop-portal-wlr obs-studio-plugins.wlrobs
-    brave ranger steam spotify meson ninja gcc
+    brave ranger steam meson ninja gcc
 
     (discord.override {
       withOpenASAR = true; # can do this here too
@@ -97,9 +98,10 @@ in {
 
     plymouth
 
-    inputs.swww.packages.${pkgs.system}.swww
+    #inputs.swww.packages.${pkgs.system}.swww
+    swww
     
-    dolphin nemo-with-extensions feh imlib2Full haruna
+    kdePackages.dolphin nemo-with-extensions feh imlib2Full haruna
 
     bibata-cursors
 
@@ -153,8 +155,6 @@ in {
 
     gthumb
 
-    gpt4all-cuda
-
     kitty
     timg
 
@@ -166,6 +166,25 @@ in {
     fontfinder 
 
     kicad
+
+    javaPackages.openjfx21
+    gtk3
+    libGL
+    xorg.libXxf86vm
+
+    libreoffice-qt6-fresh
+
+    ghidra
+
+    qemu quickemu
+    virt-manager
+
+    linux-wallpaperengine
+
+    spotify-cli-linux
+    shotcut
+
+    godot-mono
   ];
   
   home.file."jdks/zulu23".source = pkgs.zulu23;
@@ -175,25 +194,25 @@ in {
   # For WiVRn:
   #xdg.configFile."openxr/1/active_runtime.json".source = "${pkgs.wivrn}/share/openxr/1/openxr_wivrn.json";
 
-  xdg.configFile."openvr/openvrpaths.vrpath".text = ''
-    {
-      "config" :
-      [
-        "${config.xdg.dataHome}/Steam/config"
-      ],
-      "external_drivers" : null,
-      "jsonid" : "vrpathreg",
-      "log" :
-      [
-        "${config.xdg.dataHome}/Steam/logs"
-      ],
-      "runtime" :
-      [
-        "${pkgs.opencomposite}/lib/opencomposite"
-      ],
-      "version" : 1
-    }
-  '';
+    #xdg.configFile."openvr/openvrpaths.vrpath".text = ''
+    #  {
+    #    "config" :
+    #    [
+    #      "${config.xdg.dataHome}/Steam/config"
+    #    ],
+    #    "external_drivers" : null,
+    #    "jsonid" : "vrpathreg",
+    #    "log" :
+    #    [
+    #      "${config.xdg.dataHome}/Steam/logs"
+    #    ],
+    #    "runtime" :
+    #    [
+    #      "${pkgs.opencomposite}/lib/opencomposite"
+    #    ],
+    #    "version" : 1
+    #  }
+    #'';
 
   #stylix.package = inputs.stylix.homeMangerModules.stylix;
 

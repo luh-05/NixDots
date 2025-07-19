@@ -26,6 +26,7 @@ in
 
       "${nmp}/alvr/default.nix"
       "${nmp}/starship/default.nix"
+      "${hmmp}/spicetify/default.nix"
     ];
 
   #programs.hyprland = {
@@ -88,6 +89,7 @@ in
   };
 
   services.xserver.enable = true;
+  programs.xwayland.enable = true;
 
   services.dbus.enable = true;
 
@@ -174,8 +176,8 @@ in
     extraGroups = [ "networkmanager" "wheel" "adbusers" "kvm" ];
     packages = with pkgs; [
       firefox
-      kate
-      spotify
+      kdePackages.kate
+      #spotify
       alacritty
       thunderbird
       vscode
@@ -245,7 +247,6 @@ in
     obs-studio-plugins.wlrobs
     wayland
     waylandpp
-    xwayland
     #xlib
     starship
     monado-vulkan-layers

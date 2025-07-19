@@ -25,7 +25,8 @@
 
   fileSystems."/para" =
     { device = "/dev/disk/by-uuid/1C6433EC6433C774";
-      fsType = "ntfs";
+      fsType = "ntfs-3g";
+      options = [ "rw" "uid=1000" ];
     };
 
   fileSystems."/speedy" = 

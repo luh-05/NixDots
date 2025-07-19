@@ -47,7 +47,11 @@ in
       };
 
       misc = {
-        disable_hyprland_logo = "true";
+        #disable_hyprland_logo = "true";
+      };
+
+      experimental = {
+        xx_color_management_v4 = "true";
       };
 
       exec-once = 
