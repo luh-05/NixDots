@@ -132,6 +132,8 @@ in
           "$mod SHIFT, space, exec, $fsm"
 
           # utils
+          # "$mod SHIFT, s, exec, XDG_CURRENT_DESKTOP=sway flameshot gui"
+          # "$mod SHIFT ALT, s, exec, grimblast --notify --freeze copysave screen"
           "$mod SHIFT, s, exec, grimblast --notify --freeze copysave area"
           "$mod SHIFT ALT, s, exec, grimblast --notify --freeze copysave screen"
 
@@ -300,7 +302,10 @@ in
         [
           #"float,class:^(cyberpunk2077.exe)$"
           #"size 75% 75%,class:^(cyberpunk2077.exe)$"
-
+          "move 0 0,class:(flameshot),title:(flameshot)"
+          "pin,class:(flameshot),title:(flameshot)"
+          "fullscreen,class:(flameshot),title:(flameshot)"
+          "float,class:(flameshot),title:(flameshot)"
         ];
     };
   };

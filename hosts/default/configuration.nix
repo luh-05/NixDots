@@ -68,7 +68,6 @@ in
     openFirewall = true; # This is set true by default
   };
 
-
   home-manager = {
     backupFileExtension = "backup";
     extraSpecialArgs = { inherit inputs; };

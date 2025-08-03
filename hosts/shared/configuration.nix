@@ -65,14 +65,6 @@ in
   #  options = [ "rw" "uid=1000"];
   #};
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
-      xdg-desktop-portal-hyprland
-    ];
-  };
 
   programs.hyprland.enable = true;
 
@@ -253,6 +245,7 @@ in
 
     #linuxKernel.packages.linux_zen.r8125
     ethtool
+    mesa
   ];
 
   environment.variables.EDITOR = "nvim";

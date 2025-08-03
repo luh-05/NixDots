@@ -7,10 +7,11 @@
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/helios.yaml";
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml";
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/solarflare.yaml";
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
     #image = ./backgrounds/illustration-rain-futuristic-city.jpg;
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     image = ./1.png;
 
     polarity = "dark";

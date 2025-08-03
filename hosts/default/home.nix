@@ -12,6 +12,7 @@ in {
       "${hmmp}/wofi/default.nix"
       "${hmmp}/kitty/default.nix"
       "${hmmp}/helix/default.nix"
+      # "${hmmp}/flameshot/default.nix"
       #"${hmmp}/alvr/default.nix"
       #"${hmmp}/nvf/main.nix"
       #"${hmmp}/swww/default.nix"
@@ -30,6 +31,26 @@ in {
 
   wayland.windowManager.hyprland.xwayland.enable = true;
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
+      # xdg-desktop-portal-hyprland
+    ];
+    # wlr.enable = true;
+    config = {
+      common = {
+        default = "wlr";
+      };
+    };
+  };
+
+  home.sessionVariables = {
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+  };
 
   # encode the file content in nix configuration file directly home.file.".xxx".text = ''
   #     xxx
@@ -185,6 +206,9 @@ in {
     shotcut
 
     godot-mono
+
+    mangohud
+    gamemode
   ];
   
   home.file."jdks/zulu23".source = pkgs.zulu23;
