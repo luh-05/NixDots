@@ -11,7 +11,9 @@
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
     #image = ./backgrounds/illustration-rain-futuristic-city.jpg;
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    # banger:
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/laser.yaml";
     image = ./1.png;
 
     polarity = "dark";
