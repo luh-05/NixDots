@@ -13,7 +13,7 @@
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml";
     # banger:
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    base16Scheme = "./custom_themes/pop.json";
+    base16Scheme = "./pop.json";
     image = ./2.jpg;
 
     polarity = "dark";
