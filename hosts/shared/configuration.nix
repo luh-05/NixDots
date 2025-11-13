@@ -13,8 +13,6 @@ let
   home-manager-module-path = ./../../modules/home-manager;
   hmmp = home-manager-module-path;
 
-  r8125 = pkgs.callPackage ./drivers/r8125.nix { kernel = config.boot.kernelPackages.kernel; };
-
 in
 {
   imports = [
@@ -35,46 +33,16 @@ in
     ./config/environment.nix
     ./config/hardware.nix
     ./config/networking.nix
+    ./config/fonts.nix
+    ./config/users.nix
   ];
 
   programs.xwayland.enable = true;
-
-  users.users.luh = {
-    isNormalUser = true;
-    description = "Lasse Ulf Hüffler";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "adbusers"
-      "kvm"
-    ];
-    packages = with pkgs; [
-      kdePackages.kate
-      thunderbird
-      vscode
-      floorp-bin
-      qemu
-      quickemu
-      virglrenderer
-      spice
-      dnsmasq
-      phodav
-    ];
-  };
 
   programs.adb.enable = true;
 
   programs.zsh.enable = true;
   users.users.luh.shell = pkgs.zsh;
-
-  fonts.packages = with pkgs; [
-    (pkgs.callPackage "${hmmp}/fonts/feather-font.nix" { })
-    nerd-fonts.fira-code
-    nerd-fonts.fira-mono
-    nerd-fonts.droid-sans-mono
-    nerd-fonts.iosevka
-    nerd-fonts.jetbrains-mono
-  ];
 
   environment.systemPackages = with pkgs; [
     #neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.

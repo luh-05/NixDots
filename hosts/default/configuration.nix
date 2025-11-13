@@ -15,6 +15,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ./services.nix
+    ./config/boot.nix
   ];
 
   environment.systemPackages = [
