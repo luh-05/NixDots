@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  cpaths,
   ...
 }:
 
@@ -147,8 +148,8 @@ in
     eww
     spotifyd
     bash
-    (pkgs.callPackage "${hmmp}/fonts/feather-font.nix" { })
-    (pkgs.callPackage "${hmmp}/fonts/interceptor-font.nix" { })
+    (pkgs.callPackage "${cpaths.modules.fonts}/feather-font.nix" { })
+    (pkgs.callPackage "${cpaths.modules.home}/fonts/interceptor-font.nix" { })
 
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono

@@ -79,6 +79,7 @@
           root = "${cpaths.root}/modules";
           home = "${cpaths.modules.root}/home-manager";
           nixos = "${cpaths.modules.root}/nixos";
+          fonts = "${cpaths.modules.root}/fonts";
         };
       };
 
@@ -135,6 +136,7 @@
 
           specialArgs = {
             inherit inputs;
+            inherit cpaths;
           };
 
           modules = [

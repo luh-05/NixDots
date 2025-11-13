@@ -7,25 +7,25 @@
     initExtra = ''
       eval "$(starship init zsh)"
       eval "$(zoxide init zsh --cmd cd)"
-      eval "$(sh /etc/nixos/tmux.sh)"
+      eval "$(sh /home/luh/.dots/tmux.sh)"
       LS_COLORS=$LS_COLORS:'tw=32' ; export LS_COLORS
       LS_COLORS=$LS_COLORS:'ow=34' ; export LS_COLORS
     '';
 
     # set shell aliases
     shellAliases = {
-      update = "sudo nixos-rebuild switch"; 
-      update-nocache = "sudo nixos-rebuild switch --option eval-cache false";
-      update-channel = "sudo nix-channel --update";
-      full-update = "update & udpate-channel";
+      update = "sudo NIXPKGS_ALLOW_INSECURE=1 nixos-rebuild switch --no-reexec --impure";
       la = "eza -lA";
-      kimg = "/etc/nixos/modules/home-manager/zsh/kimg.sh";
+      # kimg = "/home/luh/.dots/modules/home-manager/zsh/kimg.sh";
     };
 
     # set up oh-my-zsh
     oh-my-zsh = {
       enable = false;
-      plugins = [ "git" "pay-respects" ];
+      plugins = [
+        "git"
+        "pay-respects"
+      ];
       theme = "af-magic";
     };
 

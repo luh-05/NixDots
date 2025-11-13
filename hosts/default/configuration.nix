@@ -4,6 +4,7 @@
   pkgs,
   options,
   inputs,
+  cpaths,
   ...
 }:
 
@@ -56,7 +57,10 @@ in
 
   home-manager = {
     backupFileExtension = "backup";
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {
+      inherit inputs;
+      inherit cpaths;
+    };
     users = {
       "luh" = import ./home.nix;
     };
