@@ -126,28 +126,6 @@ in
     LC_TIME = "de_DE.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  #services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  #services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.displayManager.lightdm.enable = false;
-  # services.xserver.desktopManager.plasma5.enable = false;
-
-  services.cloudflare-warp.enable = true;
-
-  services.ratbagd.enable = true;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  #sound.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.luh = {
     isNormalUser = true;
     description = "Lasse Ulf Hüffler";
@@ -158,10 +136,7 @@ in
       "kvm"
     ];
     packages = with pkgs; [
-      firefox
       kdePackages.kate
-      #spotify
-      alacritty
       thunderbird
       vscode
       floorp-bin
@@ -174,25 +149,13 @@ in
     ];
   };
 
-  #services.hyprpaper.enable = true;
-
   programs.adb.enable = true;
 
   programs.zsh.enable = true;
   users.users.luh.shell = pkgs.zsh;
 
-  #home-manager = {
-  #  backupFileExtension = "backup";
-  #  extraSpecialArgs = { inherit inputs; };
-  #  users = {
-  #    "luh" = import ./home.nix;
-  #  };
-  #};
-
-  #fonts.packages = with pkgs; [ fira-code ];
   fonts.packages = with pkgs; [
     (pkgs.callPackage "${hmmp}/fonts/feather-font.nix" { })
-    #(nerdfonts.override { fonts = [ "FiraCode" "FiraMono" "DroidSansMono" "Iosevka" "JetBrainsMono" ]; })
     nerd-fonts.fira-code
     nerd-fonts.fira-mono
     nerd-fonts.droid-sans-mono
@@ -200,11 +163,6 @@ in
     nerd-fonts.jetbrains-mono
   ];
 
-  # Allow unfree packages
-  #nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     #neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     gphoto2

@@ -13,6 +13,7 @@ let
     "misc/dbus"
     "audio/pipewire"
     "misc/printing"
+    "dm/none"
   ];
 in
 {
