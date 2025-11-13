@@ -19,8 +19,6 @@ let
 
 in
 {
-  environment.etc."debug-current-directory".text = currentDirectory;
-  environment.etc."debug-nixos-path".text = builtins.toString nmp;
   imports = [
     inputs.home-manager.nixosModules.default
 
@@ -35,64 +33,14 @@ in
     "${hmmp}/spicetify/default.nix"
 
     ./services.nix
+    ./config/boot.nix
+    ./config/environment.nix
   ];
-
-  #programs.hyprland = {
-  #  enable = true;
-  #  package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  #};
-
-  #boot.kernelModules = [ "nvidia_uvm" "nvidia_modeset" "nvidia_drm" "nvidia" ];
-  #boot.kernelParams = [ "nvidia-drm.fbdev=1" ];
-  #boot.kernelParams = [ "nvidia-drm.modeset=1" "nvidia-drm.fbdev=1" ];
-
-  boot.kernelModules = [
-    "nf_nat_ftp"
-    "v4l2loopback'"
-  ];
-  boot.extraModprobeConfig = ''
-    options v4l2loopback devices=2 video_nr=1,2 card_label="OBS Cam, Virt Cam" exclusive_caps=1
-  '';
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
   hardware.bluetooth.enable = true;
 
-  # nixpkgs.config.permittedInsecurePackages = [
-  #   "gradle-7.6.6"
-  # ];
-
-  environment.sessionVariables = {
-    LD_LIBRARY_PATH = "${pkgs.wayland}/lib:$LD_LIBRARY_PATH";
-  };
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "ntfs" ];
-  #fileSystems."/data" =
-  #{
-  #  device = "/dev/disk/by-partuuid/bcf874b7-02";
-  #  fsType = "ntfs-3g";
-  #  options = [ "rw" "uid=1000"];
-  #};
-  #fileSystems."/para" =
-  #{
-  #  device = "/dev/disk/by-partuuid/3275efc2-5142-4685-9bcc-ef930a9ed7ed";
-  #  fsType = "ntfs-3g";
-  #  options = [ "rw" "uid=1000"];
-  #};
-
-  programs.hyprland.enable = true;
-
-  environment.variables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
-    WLR_RENDERER = "vulkan";
-  };
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
   hardware.graphics = {
     enable = true;
-    #driSupport = true;
     enable32Bit = true;
   };
 
@@ -212,33 +160,6 @@ in
 
   boot.blacklistedKernelModules = [ "r8169" ];
 
-  #boot.kernelModules = [ "r8125" ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
-
+  # dont change this
+  system.stateVersion = "23.11";
 }
