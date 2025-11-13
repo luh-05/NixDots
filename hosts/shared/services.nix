@@ -10,6 +10,9 @@ let
   ];
   services = [
     "misc/scx"
+    "misc/dbus"
+    "audio/pipewire"
+    "misc/printing"
   ];
 in
 {

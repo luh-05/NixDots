@@ -34,7 +34,7 @@ in
     "${nmp}/starship/default.nix"
     "${hmmp}/spicetify/default.nix"
 
-    "./services.nix"
+    ./services.nix
   ];
 
   #programs.hyprland = {
@@ -96,10 +96,7 @@ in
     enable32Bit = true;
   };
 
-  services.xserver.enable = true;
   programs.xwayland.enable = true;
-
-  services.dbus.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -134,7 +131,7 @@ in
 
   # Enable the KDE Plasma Desktop Environment.
   #services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.lightdm.enable = false;
+  # services.xserver.displayManager.lightdm.enable = false;
   # services.xserver.desktopManager.plasma5.enable = false;
 
   services.cloudflare-warp.enable = true;
@@ -146,34 +143,6 @@ in
 
   # Enable sound with pipewire.
   #sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
-
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-  services.pipewire.extraConfig.pipewire."92-low-latency" = {
-    context.properties = {
-      default.clock = {
-        rate = 192000;
-        quantum = 32;
-        min-quantum = 32;
-        max-quantum = 32;
-      };
-    };
-  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;

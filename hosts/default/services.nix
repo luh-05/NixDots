@@ -12,6 +12,9 @@ let
   services = [
     "git/gvfs"
     "misc/tumbler"
+    "wm/xserver"
+    "misc/ratbagd"
+    "misc/cloudflare-warp"
   ];
 in
 {

@@ -8,5 +8,5 @@ let
 
 in
 {
-  services.scx.enable = true;
+  services.printing.enable = true;
 }
