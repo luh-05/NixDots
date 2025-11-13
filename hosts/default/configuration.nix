@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 {
   config,
   lib,
@@ -18,6 +14,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
+    ./services.nix
   ];
 
   environment.systemPackages = [
@@ -32,15 +29,15 @@ in
   services.xserver.displayManager.setupCommands = ''
     xrandr --output DP-4 --primary
   '';
-  services.monado = {
-    enable = true;
-    defaultRuntime = true;
-  };
-  systemd.user.services.monado.environment = {
-    STEAMVR_LH_ENABLE = "1";
-    XRT_COMPOSITOR_COMPUTE = "1";
-    WMR_HANDTRACKING = "0";
-  };
+  # services.monado = {
+  #   enable = true;
+  #   defaultRuntime = true;
+  # };
+  # systemd.user.services.monado.environment = {
+  #   STEAMVR_LH_ENABLE = "1";
+  #   XRT_COMPOSITOR_COMPUTE = "1";
+  #   WMR_HANDTRACKING = "0";
+  # };
   # services.wivrn = {
   #   enable = true;
   #   openFirewall = true;
