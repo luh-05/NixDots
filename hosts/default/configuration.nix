@@ -2,38 +2,36 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, options, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  options,
+  inputs,
+  ...
+}:
 
 let
   shared-config-path = ./../shared;
   scp = shared-config-path;
 in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-
-      #"${scp}/configuration.nix"
-      #"${scp}/nvidia.nix"
-      #./../../modules/home-manager/nvf/main.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   environment.systemPackages = [
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser
   ];
-  
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   services.xserver.displayManager.setupCommands = ''
     xrandr --output DP-4 --primary
   '';
-
-  # services.xserver.xrandrHeads = [
-  #   {
-  #     output = "DP-4";
-  #     primary = true;
-  #   }
-  # ];
   services.monado = {
     enable = true;
     defaultRuntime = true;
@@ -103,7 +101,7 @@ in
     ];
     enableVirtualCamera = true;
   };
-  
+
   services.gvfs.enable = true;
   services.tumbler.enable = true;
 
@@ -112,10 +110,12 @@ in
     extraSpecialArgs = { inherit inputs; };
     users = {
       "luh" = import ./home.nix;
-     };
+    };
   };
 
-  networking.bridges = { mylxdbr0.interfaces = []; };
+  networking.bridges = {
+    mylxdbr0.interfaces = [ ];
+  };
   networking.localCommands = ''
     ip address add 192.168.57.1/24 dev mylxdbr0
   '';
@@ -134,33 +134,19 @@ in
   systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
   virtualisation = {
     waydroid.enable = true;
-    # lxd = {
-    #   enable = true;
-
-    #   recommendedSysctlSettings = true;
-    # };
     lxc.lxcfs.enable = true;
     libvirtd = {
       enable = true;
       qemu = {
         package = pkgs.qemu.override {
-          # extraPackages = with pkgs; [virglrenderer];
         };
-        # extraPackages = with pkgs; [virglrenderer];
         runAsRoot = true;
         swtpm.enable = true;
-        # ovmf = {
-        #   enable = true;
-        #   packages = [(pkgs.OVMF.override {
-        #     secureBoot = true;
-        #     tpmSupport = true;
-        #   }).fd];
-        # };
       };
     };
   };
 
   users.users."luh" = {
-    extraGroups = ["libvirtd"];
+    extraGroups = [ "libvirtd" ];
   };
 }
