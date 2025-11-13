@@ -1,9 +1,15 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  options,
+  inputs,
+  ...
+}:
 let
 
 in
 {
-  services.monado.environment = {
+  services.monado = {
     enable = true;
     defaultRuntime = true;
   };

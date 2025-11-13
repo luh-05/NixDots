@@ -1,5 +1,11 @@
-
-{ config, lib, pkgs, options, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  options,
+  inputs,
+  ...
+}:
 
 let
   nixos-modules-path = ./../../modules/nixos;
@@ -10,24 +16,26 @@ let
   currentDirectory = builtins.getEnv "PWD";
 
   r8125 = pkgs.callPackage ./drivers/r8125.nix { kernel = config.boot.kernelPackages.kernel; };
+
 in
 {
   environment.etc."debug-current-directory".text = currentDirectory;
   environment.etc."debug-nixos-path".text = builtins.toString nmp;
-  imports =
-    [ 
-      inputs.home-manager.nixosModules.default
+  imports = [
+    inputs.home-manager.nixosModules.default
 
-      #inputs.stylix.nixosModules.stylix
-      "${nmp}/stylix/default.nix"
+    #inputs.stylix.nixosModules.stylix
+    "${nmp}/stylix/default.nix"
 
-      #inputs.nixvim.homeManagerModules.nixvim
-      # ./modules/neovim/neovim.nix
+    #inputs.nixvim.homeManagerModules.nixvim
+    # ./modules/neovim/neovim.nix
 
-      "${nmp}/alvr/default.nix"
-      "${nmp}/starship/default.nix"
-      "${hmmp}/spicetify/default.nix"
-    ];
+    "${nmp}/alvr/default.nix"
+    "${nmp}/starship/default.nix"
+    "${hmmp}/spicetify/default.nix"
+
+    "./services.nix"
+  ];
 
   #programs.hyprland = {
   #  enable = true;
@@ -38,13 +46,14 @@ in
   #boot.kernelParams = [ "nvidia-drm.fbdev=1" ];
   #boot.kernelParams = [ "nvidia-drm.modeset=1" "nvidia-drm.fbdev=1" ];
 
-
-  boot.kernelModules = [ "nf_nat_ftp" "v4l2loopback'" ];
+  boot.kernelModules = [
+    "nf_nat_ftp"
+    "v4l2loopback'"
+  ];
   boot.extraModprobeConfig = ''
     options v4l2loopback devices=2 video_nr=1,2 card_label="OBS Cam, Virt Cam" exclusive_caps=1
   '';
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-  services.scx.enable = true;
 
   hardware.bluetooth.enable = true;
 
@@ -56,24 +65,22 @@ in
     LD_LIBRARY_PATH = "${pkgs.wayland}/lib:$LD_LIBRARY_PATH";
   };
 
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
-  #fileSystems."/data" = 
+  #fileSystems."/data" =
   #{
   #  device = "/dev/disk/by-partuuid/bcf874b7-02";
   #  fsType = "ntfs-3g";
   #  options = [ "rw" "uid=1000"];
   #};
-  #fileSystems."/para" = 
+  #fileSystems."/para" =
   #{
   #  device = "/dev/disk/by-partuuid/3275efc2-5142-4685-9bcc-ef930a9ed7ed";
   #  fsType = "ntfs-3g";
   #  options = [ "rw" "uid=1000"];
   #};
-
 
   programs.hyprland.enable = true;
 
@@ -119,7 +126,7 @@ in
     LC_NUMERIC = "de_DE.UTF-8";
     LC_PAPER = "de_DE.UTF-8";
     LC_TELEPHONE = "de_DE.UTF-8";
-   LC_TIME = "de_DE.UTF-8";
+    LC_TIME = "de_DE.UTF-8";
   };
 
   # Enable the X11 windowing system.
@@ -175,7 +182,12 @@ in
   users.users.luh = {
     isNormalUser = true;
     description = "Lasse Ulf Hüffler";
-    extraGroups = [ "networkmanager" "wheel" "adbusers" "kvm" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "adbusers"
+      "kvm"
+    ];
     packages = with pkgs; [
       firefox
       kdePackages.kate
@@ -197,7 +209,7 @@ in
 
   programs.adb.enable = true;
 
-  programs.zsh.enable=true;
+  programs.zsh.enable = true;
   users.users.luh.shell = pkgs.zsh;
 
   #home-manager = {
@@ -207,7 +219,7 @@ in
   #    "luh" = import ./home.nix;
   #  };
   #};
-  
+
   #fonts.packages = with pkgs; [ fira-code ];
   fonts.packages = with pkgs; [
     (pkgs.callPackage "${hmmp}/fonts/feather-font.nix" { })
@@ -217,7 +229,7 @@ in
     nerd-fonts.droid-sans-mono
     nerd-fonts.iosevka
     nerd-fonts.jetbrains-mono
-  ]; 
+  ];
 
   # Allow unfree packages
   #nixpkgs.config.allowUnfree = true;

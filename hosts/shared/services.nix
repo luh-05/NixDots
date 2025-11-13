@@ -7,11 +7,9 @@
 let
   bundle-path = "${cpaths.services}/bundles";
   bundles = [
-    "vr"
   ];
   services = [
-    "git/gvfs"
-    "misc/tumbler"
+    "misc/scx"
   ];
 in
 {

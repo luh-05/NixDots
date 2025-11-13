@@ -71,6 +71,17 @@
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         modules = [ ./modules/home-manager/nvf/main.nix ];
       };
+
+      cpaths = {
+        root = "/home/luh/.dots";
+        services = "${cpaths.root}/services";
+        modules = {
+          root = "${cpaths.root}/modules";
+          home = "${cpaths.modules.root}/home-manager";
+          nixos = "${cpaths.modules.root}/nixos";
+        };
+      };
+
       mkHost = hostName: system: extraModules: {
         sys = nixpkgs.lib.nixosSystem {
           pkgs = import nixpkgs {
@@ -85,6 +96,7 @@
 
           specialArgs = {
             inherit inputs;
+            inherit cpaths;
           };
           modules = [
             lix-module.nixosModules.lixFromNixpkgs
