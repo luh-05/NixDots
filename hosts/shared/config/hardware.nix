@@ -19,7 +19,4 @@ in
     WLR_RENDERER = "vulkan";
   };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  # other
-  environment.variables.EDITOR = "nvim";
 }

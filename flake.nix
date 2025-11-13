@@ -118,6 +118,9 @@
             ./hosts/shared/gpus/nvidia.nix
             ./hosts/shared/cpus/amd.nix
             ./hosts/shared/kb-layouts/en_us.nix
+            ./hosts/shared/localization/locale/en_US.nix
+            ./hosts/shared/localization/formatting/de_DE.nix
+            ./hosts/shared/localization/time/europe-berlin.nix
             { environment.systemPackages = [ customNeovim.neovim ]; }
           ]).sys;
         laptop =
