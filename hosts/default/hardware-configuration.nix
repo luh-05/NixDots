@@ -31,7 +31,8 @@
 
   fileSystems."/speedy" = 
     { device = "/dev/disk/by-uuid/01D73034490843B0";
-      fsType = "ntfs";
+      fsType = "ntfs-3g";
+      options = [ "rw" "uid=1000" ];
     };
 
   fileSystems."/winc" = 

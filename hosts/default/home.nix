@@ -33,6 +33,10 @@ in {
 
   xdg.portal = {
     enable = true;
+    # config = {
+    #   common.default = ["gtk"];
+    #   hyprland.default = ["gtk" "hyprland"];
+    # };
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
       xdg-desktop-portal-wlr
@@ -42,6 +46,7 @@ in {
     config = {
       common = {
         default = "wlr";
+        hyprland = ["gtk" "hyprland"];
       };
     };
   };
@@ -61,6 +66,53 @@ in {
       allowUnfree = true; allowUnfreePredicate = (_: true); cudaSupport = true;
     };
   };
+
+  # programs.hyprpanel = {
+  #   enable = true;
+
+  #   settings = {
+  #     layout = {
+  #       bar.layouts = {
+  #         "0" = {
+  #           left = [];
+  #           middle = [];
+  #           right = [];
+  #         };
+  #         "1" = {
+  #           left = [];
+  #           middle = [];
+  #           right = [];
+  #         };
+  #         "2" = {
+  #           left = [ "dashboard" "workspaces" ];
+  #           middle = [ "media" ];
+  #           right = [ "network" "volume" "systray" "notifications"];
+  #         };
+  #       };
+  #     };
+
+  #     bar.launcher.autoDetectIcon = true;
+  #     bar.workspaces.show_icons = true;
+
+  #     menus.clock = {
+  #       time = {
+  #         military = true;
+  #         hideSeconds = true;
+  #       };
+  #       weather.unit = "metric";
+  #     };
+
+  #     menus.dashboard.directories.enabled = false;
+  #     menus.dashboard.stats.enable_gpu = true;
+
+  #     theme.bar.transparent = true;
+
+  #     theme.font = {
+  #       name = "CaskaydiaCove NF";
+  #       size = "16px";
+  #     };
+  #   };
+  # };
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
@@ -102,7 +154,12 @@ in {
     # system tools
     sysstat lm_sensors # for `sensors` command ethtool pciutils # lspci usbutils # lsusb
     #neovim nixvim discord webcord
-    pavucontrol obs-studio qt5Full gst_all_1.gstreamer
+    pavucontrol
+
+    # obs-studio
+
+    # qt6Full
+    gst_all_1.gstreamer
     #xdg-desktop-portal-wlr obs-studio-plugins.wlrobs
     brave ranger steam meson ninja gcc
 
@@ -142,15 +199,13 @@ in {
     jetbrains.idea-community
     zulu17
     #openjdk17-bootstrap
-    monitor stacer
+    monitor 
 
     heroic wtype
 
     prismlauncher
 
     krita opentabletdriver
-
-    lmstudio
 
     gamescope
 
@@ -170,23 +225,24 @@ in {
 
     ffmpeg signal-desktop
 
-    protontricks lutris wine
+    protontricks wine
 
+    steam-run
+  
     nexusmods-app
 
     gthumb
 
     kitty
     timg
-
     (pkgs.inkscape-with-extensions.override {
       inkscapeExtensions = [
-        inkscape-extensions.applytransforms
+        # inkscape-extensions.applytransforms
       ];
     })
     fontfinder 
 
-    kicad
+    # kicad
 
     javaPackages.openjfx21
     gtk3
@@ -197,7 +253,7 @@ in {
 
     ghidra
 
-    qemu quickemu
+    quickemu
     virt-manager
 
     linux-wallpaperengine
@@ -209,6 +265,31 @@ in {
 
     mangohud
     gamemode
+
+    kdePackages.kio
+    kdePackages.kio-extras
+    kdePackages.qtimageformats
+    kdePackages.kdesdk-thumbnailers
+    kdePackages.kdegraphics-thumbnailers
+    kdePackages.kimageformats
+    kdePackages.ffmpegthumbs
+    kdePackages.taglib
+    resvg
+
+    tor-browser
+
+    gnome-boxes
+    xorg.xhost
+
+    logseq
+
+    # android-studio
+
+    llvm
+
+    # blender-hip
+
+    # zen
   ];
   
   home.file."jdks/zulu23".source = pkgs.zulu23;

@@ -39,9 +39,18 @@ in
   #boot.kernelParams = [ "nvidia-drm.modeset=1" "nvidia-drm.fbdev=1" ];
 
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelModules = [ "nf_nat_ftp" "v4l2loopback'" ];
+  boot.extraModprobeConfig = ''
+    options v4l2loopback devices=2 video_nr=1,2 card_label="OBS Cam, Virt Cam" exclusive_caps=1
+  '';
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  services.scx.enable = true;
 
   hardware.bluetooth.enable = true;
+
+  # nixpkgs.config.permittedInsecurePackages = [
+  #   "gradle-7.6.6"
+  # ];
 
   environment.sessionVariables = {
     LD_LIBRARY_PATH = "${pkgs.wayland}/lib:$LD_LIBRARY_PATH";
@@ -119,7 +128,7 @@ in
   # Enable the KDE Plasma Desktop Environment.
   #services.xserver.displayManager.sddm.enable = true;
   services.xserver.displayManager.lightdm.enable = false;
-  services.xserver.desktopManager.plasma5.enable = false;
+  # services.xserver.desktopManager.plasma5.enable = false;
 
   services.cloudflare-warp.enable = true;
 
@@ -132,6 +141,7 @@ in
   #sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  security.polkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -173,7 +183,13 @@ in
       alacritty
       thunderbird
       vscode
-      floorp
+      floorp-bin
+      qemu
+      quickemu
+      virglrenderer
+      spice
+      dnsmasq
+      phodav
     ];
   };
 
@@ -210,6 +226,8 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    gphoto2
+    v4l-utils
     wget
     gitFull
     curl
@@ -246,6 +264,7 @@ in
     #linuxKernel.packages.linux_zen.r8125
     ethtool
     mesa
+    looking-glass-client
   ];
 
   environment.variables.EDITOR = "nvim";

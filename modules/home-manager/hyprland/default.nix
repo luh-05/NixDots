@@ -14,7 +14,7 @@ in
   #  ];
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
     systemd.variables = ["--all"];
     extraConfig = 
     ''
@@ -68,7 +68,7 @@ in
       "$tab" = "HDMI-A-2";
       monitor =
         [
-          "$mon2, 3440x1440@165, 0x1080, 1"
+          "$mon2, 3440x1440@165, 0x1080, 1, bitdepth, 10"
           "$mon0, 1920x1080@144, 0x0, 1"
           "$mon1, 1920x1080@60, 1920x0, 1"
           "$tab, 1920x1080@60, 3840x0, 1"
@@ -93,6 +93,21 @@ in
           10)
         );
 
+      group = {
+        # FIXME
+        # "col.active" = lib.mkForce "rgba(D1AF6CFF)";
+        # "col.inactive" = lib.mkForce "rgba(212121FF)";
+        groupbar = {
+          height = 1;
+          font_size = 12;
+          text_offset = -12;
+          indicator_height = 24;
+          rounding = 10;
+          "col.active" = lib.mkForce "rgba(5B74B1FF)";
+          "col.inactive" = lib.mkForce "rgba(525252FF)";
+        };
+      };
+
       # set up bindings
       "$mod" = "SUPER";
       "$term" = "kitty -o allow_remote_control=yes --listen-on unix:/tmp/kitty_remote_control";
@@ -100,7 +115,7 @@ in
       "$explorer" = "dolphin";
       #"$menu" = "killall .wofi-wrapped & wofi --show drun";
       "$menu" = "killall wofi || wofi --show drun";
-      "$fsm" = "bash ~/.config/eww/dashboard/launch_dashboard";
+      # "$fsm" = "bash ~/.config/eww/dashboard/launch_dashboard";
       bind =
         [
           # hyprland controls
@@ -126,10 +141,10 @@ in
 
           # app bindings
           "$mod, return, exec, $term"
-          "$mod, b, exec, $browser"
+          # "$mod, b, exec, $browser"
           "$mod, e, exec, $explorer"
           "$mod, space, exec, $menu"
-          "$mod SHIFT, space, exec, $fsm"
+          # "$mod SHIFT, space, exec, $fsm"
 
           # utils
           # "$mod SHIFT, s, exec, XDG_CURRENT_DESKTOP=sway flameshot gui"
@@ -153,6 +168,14 @@ in
           "$mod SHIFT, a, exec, wtype 'Ä'"
           "$mod SHIFT, o, exec, wtype 'Ö'"
           "$mod SHIFT, u, exec, wtype 'Ü'"
+
+          # groups
+          "$mod, g, togglegroup"
+          "$mod, c, changegroupactive"
+          "$mod, b, lockactivegroup"
+
+          # hyprpanel
+          "$mod SHIFT, space, exec, hyprpanel t bar-2"
 
           # special keys
           #"$mod, i, submap, insert"
@@ -242,7 +265,7 @@ in
       };
 
       bezier = [
-        "funk,.32,1.06,0,.99"
+        "funk,0.32,1.06,0.0,0.99"
       ];
 
       animation = [
@@ -306,6 +329,7 @@ in
           "pin,class:(flameshot),title:(flameshot)"
           "fullscreen,class:(flameshot),title:(flameshot)"
           "float,class:(flameshot),title:(flameshot)"
+          "noanim, class:hyprpanel"
         ];
     };
   };

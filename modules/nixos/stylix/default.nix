@@ -13,8 +13,89 @@
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml";
     # banger:
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    base16Scheme = "./pop.json";
-    image = ./2.jpg;
+    # base16Scheme = builtins.toFile "pop.json" (builtins.readFile ./pop.json);
+    # base16Scheme = {
+    #   base00 = "181c1f";
+    #   base01 = "212121";
+    #   base02 = "8a776f";
+    #   base03 = "3b643e";
+    #   # base04 = "6b775d";
+    #   # base03 = "4667b9";
+    #   base04 = "818f70";
+    #   base05 = "e2e2e4";
+    #   base06 = "f0f1f3";
+    #   base07 = "f2f2f2";
+    #   base08 = "557ff7"; # blue
+    #   base09 = "977e4e";
+    #   base0A = "f38958";
+    #   base0B = "e27e4f";
+    #   base0C = "9fa1a3";
+    #   base0D = "fde180";
+    #   base0E = "879469";
+    #   base0F = "83d7d7";
+    # };
+    # base16Scheme = {
+    #   base00 = "181c1f";
+    #   base01 = "212121";
+    #   base02 = "8a776f";
+    #   base03 = "4667b9";
+    #   base04 = "818f70";
+    #   base05 = "e2e2e4";
+    #   base06 = "f0f1f3";
+    #   base07 = "f2f2f2";
+    #   base08 = "557ff7"; # blue
+    #   base09 = "977e4e";
+    #   base0A = "f38958";
+    #   base0B = "ff9764";
+    #   base0C = "9fa1a3";
+    #   base0D = "fde180";
+    #   base0E = "879469";
+    #   base0F = "83d7d7";
+    # };
+    base16Scheme = {
+      base00 = "181c1f";
+      base01 = "212121";
+      base02 = "8a776f";
+      base03 = "5b74b1";
+      base0E = "3fa77f";
+      base04 = "818f70";
+      base05 = "e2e2e4";
+      base06 = "f0f1f3";
+      base07 = "f2f2f2";
+      base08 = "557ff7"; # blue
+      base09 = "d1af6c";
+      # base09 = "977e4e";
+      base0A = "f38958";
+      base0B = "e27e4f";
+      # base0B = "ff9764";
+      base0C = "9fa1a3";
+      base0D = "fde180";
+      # base0E = "879469";
+      base0F = "83d7d7";
+    };
+    # base16Scheme = {
+    #   base00 = "181c1f";
+    #   # base01 = "4b4640";
+    #   # base01 = "4D878F"; // blue test color
+    #   base01 = "212121";
+    #   base02 = "8a776f";
+    #   base03 = "4667b9";
+    #   base04 = "818f70";
+    #   base0D = "D6BB5A";
+    #   base05 = "e2e2e4";
+    #   base06 = "f0f1f3";
+    #   base07 = "f2f2f2";
+    #   base08 = "3c67dd"; # blue
+    #   base09 = "977e4e";
+    #   base0A = "8d6798";
+    #   base0B = "c36b3c";
+    #   base0C = "9fa1a3";
+    #   # base0D = "9c7163";
+    #   base0E = "757e67";
+    #   base0F = "608580";
+    # };
+
+    # image = ./2.jpg;
 
     polarity = "dark";
 

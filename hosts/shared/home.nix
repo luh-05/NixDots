@@ -147,7 +147,7 @@ in
 
     plymouth
 
-    inputs.swww.packages.${pkgs.system}.swww
+    inputs.swww.packages.${pkgs.stdenv.hostPlatform.system}.swww
     
     dolphin
     cinnamon.nemo-with-extensions
