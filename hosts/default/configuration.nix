@@ -35,6 +35,14 @@ in
 
   programs.xfconf.enable = true;
 
+  services.flatpak.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+  };
+
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
@@ -100,6 +108,10 @@ in
   };
 
   users.users."luh" = {
-    extraGroups = [ "libvirtd" ];
+    extraGroups = [
+      "libvirtd"
+      "audio"
+      "realtime"
+    ];
   };
 }

@@ -9,6 +9,6 @@ let
 
 in
 {
-  services.xserver.enable = lib.mkDefault false;
+  # services.xserver.enable = lib.mkDefault false;
   services.xserver.displayManager.lightdm.enable = false;
 }

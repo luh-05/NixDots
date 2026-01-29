@@ -20,6 +20,7 @@ in
     "${hmmp}/wofi/default.nix"
     "${hmmp}/kitty/default.nix"
     "${hmmp}/helix/default.nix"
+    # "${hmmp}/nvim/default.nix"
   ];
 
   home.username = "luh";
@@ -58,6 +59,7 @@ in
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
     XDG_SESSION_DESKTOP = "Hyprland";
+    CPATH = "${pkgs.glibc}/include:$CPATH";
   };
 
   # encode the file content in nix configuration file directly home.file.".xxx".text = ''
@@ -74,6 +76,9 @@ in
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
+    ardour
+    distrho-ports
+    vital
 
     fastfetch
 
@@ -110,7 +115,7 @@ in
 
     sysstat
     lm_sensors
-    pavucontrol
+    pwvucontrol
 
     gst_all_1.gstreamer
     brave
@@ -119,6 +124,7 @@ in
     meson
     ninja
     gcc
+    glibc
 
     (discord.override {
       withOpenASAR = true;
@@ -138,6 +144,12 @@ in
     swww
 
     kdePackages.dolphin
+    kdePackages.ark
+    unzip
+    p7zip
+    gnutar
+    xz
+
     nemo-with-extensions
     feh
     imlib2Full
@@ -199,7 +211,7 @@ in
     signal-desktop
 
     protontricks
-    wine
+    # wine
 
     steam-run
 
@@ -247,6 +259,8 @@ in
     kdePackages.taglib
     resvg
 
+    file-roller
+
     tor-browser
 
     gnome-boxes
@@ -255,7 +269,27 @@ in
     logseq
 
     llvm
-  ];
+
+    qpwgraph
+    carla
+    wineWowPackages.staging
+    # yabridge
+    # yabridgectl
+    # patchage
+    kakoune
+    kakoune-lsp
+    kakoune-cr
+
+    neovim
+    # clang
+    luarocks
+    lua5_1
+    gnumake
+    zig
+    zig-zlint
+    tree-sitter
+    tree-sitter-grammars.tree-sitter-zig 
+];
 
   home.file."jdks/zulu23".source = pkgs.zulu23;
 

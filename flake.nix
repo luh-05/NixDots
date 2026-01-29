@@ -27,50 +27,55 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    plugin-aerial-nvim = {
-      url = "github:stevearc/aerial.nvim";
-      flake = false;
-    };
+    # plugin-aerial-nvim = {
+    #   url = "github:stevearc/aerial.nvim";
+    #   flake = false;
+    # };
 
-    plugin-gitsigns-nvim = {
-      url = "github:lewis6991/gitsigns.nvim";
-      flake = false;
-    };
+    # plugin-gitsigns-nvim = {
+    #   url = "github:lewis6991/gitsigns.nvim";
+    #   flake = false;
+    # };
 
-    plugin-which-key = {
-      url = "github:folke/which-key.nvim";
-      flake = false;
-    };
+    # plugin-which-key = {
+    #   url = "github:folke/which-key.nvim";
+    #   flake = false;
+    # };
 
-    nvf = {
-      url = "github:notashelf/nvf?rev=18bf52e540c745deb2c50fe3967cbe229a70bfe4";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    # nvf = {
+    #   url = "github:notashelf/nvf?rev=18bf52e540c745deb2c50fe3967cbe229a70bfe4";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #   };
+    # };
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
     zen-browser = {
       url = "github:luh-05/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-ld.url = "github:Mic92/nix-ld";
+    # this line assume that you also have nixpkgs as an input
+    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      nvf,
+      # nvf,
       spicetify-nix,
       lix-module,
       zen-browser,
+      nix-ld,
       ...
     }@inputs:
     let
-      customNeovim = nvf.lib.neovimConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
-        modules = [ ./modules/home-manager/nvf/main.nix ];
-      };
+      # customNeovim = nvf.lib.neovimConfiguration {
+      #   pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      #   modules = [ ./modules/home-manager/nvf/main.nix ];
+      # };
 
       cpaths = {
         root = "/home/luh/.dots";
@@ -105,13 +110,19 @@
             ./hosts/${hostName}/configuration.nix
             inputs.stylix.nixosModules.stylix
             inputs.spicetify-nix.nixosModules.default
+
+            nix-ld.nixosModules.nix-ld
+
+            # The module in this repository defines a new module under (programs.nix-ld.dev) instead of (programs.nix-ld)
+            # to not collide with the nixpkgs version.
+            { programs.nix-ld.dev.enable = true; }
           ]
           ++ extraModules;
         };
       };
     in
     {
-      packages."x86_64-linux".my-neovim = customNeovim.neovim;
+      # packages."x86_64-linux".my-neovim = customNeovim.neovim;
 
       nixosConfigurations = {
         default =
@@ -122,7 +133,11 @@
             ./hosts/shared/localization/locale/en_US.nix
             ./hosts/shared/localization/formatting/de_DE.nix
             ./hosts/shared/localization/time/europe-berlin.nix
-            { environment.systemPackages = [ customNeovim.neovim ]; }
+            {
+              environment.systemPackages = [
+                # customNeovim.neovim
+              ];
+            }
           ]).sys;
         laptop =
           (mkHost "laptop" "x86_64-linux" [
@@ -140,7 +155,7 @@
           };
 
           modules = [
-            nvf.homeManagerModules.default
+            # nvf.homeManagerModules.default
           ];
         };
       };

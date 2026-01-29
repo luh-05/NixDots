@@ -1,21 +1,25 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
-let 
+let
   home-manager-modules-path = ./../../modules/home-manager;
   hmmp = home-manager-modules-path;
 in
 {
-  imports = 
-    [
-      "${hmmp}/nixvim/nixvim.nix"
-      "${hmmp}/git/git.nix"
-      "${hmmp}/alacritty/default.nix"
-      "${hmmp}/zsh/default.nix"
-      "${hmmp}/tmux/default.nix"
-      "${hmmp}/hyprland/default.nix"
-      "${hmmp}/wofi/default.nix"
-      #"${hmmp}/swww/default.nix"
-    ];
+  imports = [
+    # "${hmmp}/nixvim/nixvim.nix"
+    "${hmmp}/git/git.nix"
+    "${hmmp}/alacritty/default.nix"
+    "${hmmp}/zsh/default.nix"
+    "${hmmp}/tmux/default.nix"
+    "${hmmp}/hyprland/default.nix"
+    "${hmmp}/wofi/default.nix"
+    #"${hmmp}/swww/default.nix"
+  ];
 
   home.username = "luh";
   home.homeDirectory = "/home/luh";
@@ -30,12 +34,11 @@ in
   #   executable = true;  # make all files executable
   # };
 
-  home.file.".config/eww"  = {
+  home.file.".config/eww" = {
     source = "${hmmp}/eww";
     recursive = true;
     executable = true;
   };
-
 
   # encode the file content in nix configuration file directly
   # home.file.".xxx".text = ''
@@ -80,7 +83,7 @@ in
     #aria2 # A lightweight multi-protocol & multi-source command-line download utility
     #socat # replacement of openbsd-netcat
     #nmap # A utility for network discovery and security auditing
-    ipcalc  # it is a calculator for the IPv4/v6 addresses
+    ipcalc # it is a calculator for the IPv4/v6 addresses
 
     # misc
     cowsay
@@ -103,7 +106,7 @@ in
     #hugo # static site generator
     glow # markdown previewer in terminal
 
-    btop  # replacement of htop/nmon
+    btop # replacement of htop/nmon
     iotop # io monitoring
     iftop # network monitoring
 
@@ -148,7 +151,7 @@ in
     plymouth
 
     inputs.swww.packages.${pkgs.stdenv.hostPlatform.system}.swww
-    
+
     dolphin
     cinnamon.nemo-with-extensions
     feh
@@ -160,8 +163,15 @@ in
     eww
     bash
     (pkgs.callPackage "${hmmp}/fonts/feather-font.nix" { })
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Iosevka" "JetBrainsMono" ]; }) 
-    
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+        "DroidSansMono"
+        "Iosevka"
+        "JetBrainsMono"
+      ];
+    })
+
     piper
     libratbag
 
