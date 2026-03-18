@@ -10,6 +10,8 @@
 
     enabledExtensions = with spicePkgs.extensions; [
       shuffle # shuffle+ (special characters are sanitized out of extension names)
+      bookmark
+      fullAppDisplay
     ];
     enabledCustomApps = with spicePkgs.apps; [
       newReleases

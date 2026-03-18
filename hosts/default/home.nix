@@ -289,6 +289,7 @@ in
     zig-zlint
     tree-sitter
     tree-sitter-grammars.tree-sitter-zig 
+    anki-bin
 ];
 
   home.file."jdks/zulu23".source = pkgs.zulu23;

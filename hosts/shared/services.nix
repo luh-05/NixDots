@@ -14,6 +14,7 @@ let
     "audio/pipewire"
     "misc/printing"
     "dm/none"
+    #"networking/resolved_quad9"
   ];
 in
 {
