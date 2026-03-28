@@ -39,7 +39,7 @@ in
 
   programs.xwayland.enable = true;
 
-  programs.adb.enable = true;
+  # programs.adb.enable = true;
 
   programs.zsh.enable = true;
   users.users.luh.shell = pkgs.zsh;

@@ -176,7 +176,7 @@ in
 
     zls
 
-    jetbrains.idea-community
+    jetbrains.idea-oss
     zulu17
     monitor
 
@@ -225,7 +225,7 @@ in
       inkscapeExtensions = [
       ];
     })
-    fontfinder
+    # fontfinder
 
     javaPackages.openjfx21
     gtk3
@@ -291,8 +291,9 @@ in
     tree-sitter-grammars.tree-sitter-zig 
     anki-bin
 ];
-
-  home.file."jdks/zulu23".source = pkgs.zulu23;
+  
+  # used to be zulu23, but deprecated. If Issues arise, revert.
+  home.file."jdks/zulu25".source = pkgs.zulu25;
 
   home.stateVersion = "23.11";
 
