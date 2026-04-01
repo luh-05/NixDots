@@ -15,6 +15,7 @@ let
     "misc/printing"
     "dm/none"
     #"networking/resolved_quad9"
+    "networking/resolved"
   ];
 in
 {
