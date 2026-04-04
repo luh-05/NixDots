@@ -1,44 +1,67 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  cpaths,
+  ...
+}:
 
-let 
+let
   home-manager-modules-path = ./../../modules/home-manager;
   hmmp = home-manager-modules-path;
 in
 {
-  imports = 
-    [
-      "${hmmp}/nixvim/nixvim.nix"
-      "${hmmp}/git/git.nix"
-      "${hmmp}/alacritty/default.nix"
-      "${hmmp}/zsh/default.nix"
-      "${hmmp}/tmux/default.nix"
-      "${hmmp}/hyprland/laptop.nix"
-      "${hmmp}/wofi/default.nix"
-      #"${hmmp}/swww/default.nix"
-    ];
+  imports = [
+    "${hmmp}/git/git.nix"
+    "${hmmp}/zsh/default.nix"
+    "${hmmp}/tmux/default.nix"
+    "${hmmp}/hyprland/default.nix"
+    "${hmmp}/wofi/default.nix"
+    "${hmmp}/kitty/default.nix"
+    "${hmmp}/helix/default.nix"
+    # "${hmmp}/nvim/default.nix"
+  ];
 
   home.username = "luh";
   home.homeDirectory = "/home/luh";
 
-  # link the configuration file in current directory to the specified location in home directory
-  # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
-
-  # link all files in `./scripts` to `~/.config/i3/scripts`
-  # home.file.".config/i3/scripts" = {
-  #   source = ./scripts;
-  #   recursive = true;   # link recursively
-  #   executable = true;  # make all files executable
+  # link all files in `./scripts` to `~/.config/i3/scripts` home.file.".config/i3/scripts" = {
+  #   source = ./scripts; recursive = true; # link recursively executable = true; # make all files executable
   # };
 
-  home.file.".config/eww"  = {
+  home.file.".config/eww" = {
     source = "${hmmp}/eww";
     recursive = true;
     executable = true;
   };
 
+  wayland.windowManager.hyprland.xwayland.enable = true;
 
-  # encode the file content in nix configuration file directly
-  # home.file.".xxx".text = ''
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
+    ];
+    config = {
+      common = {
+        default = "wlr";
+        hyprland = [
+          "gtk"
+          "hyprland"
+        ];
+      };
+    };
+  };
+
+  home.sessionVariables = {
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    CPATH = "${pkgs.glibc}/include:$CPATH";
+  };
+
+  # encode the file content in nix configuration file directly home.file.".xxx".text = ''
   #     xxx
   # '';
 
@@ -46,60 +69,26 @@ in
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
+      cudaSupport = true;
     };
-  };
-
-  services.flameshot = {
-    enable = true;
-    package = pkgs.flameshot.overrideAttrs (oldAttrs: {
-      src = pkgs.fetchFromGitHub {
-        owner = "flameshot-org";
-        repo = "flameshot";
-        rev = "3d21e4967b68e9ce80fb2238857aa1bf12c7b905";
-        sha256 = "sha256-OLRtF/yjHDN+sIbgilBZ6sBZ3FO6K533kFC1L2peugc=";
-      };
-      cmakeFlags = [
-        "-DUSE_WAYLAND_CLIPBOARD=1"
-        "-DUSE_WAYLAND_GRIM=1"
-      ];
-      buildInputs = oldAttrs.buildInputs ++ [ pkgs.libsForQt5.kguiaddons ];
-    });
   };
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
-    # here is some command line tools I use frequently
-    # feel free to add your own or remove some of them
-
     fastfetch
 
-    # archives
     zip
     xz
     unzip
     p7zip
 
-    # utils
-    ripgrep # recursively searches directories for a regex pattern
-    #jq # A lightweight and flexible command-line JSON processor
-    #yq-go # yaml processor https://github.com/mikefarah/yq
-    eza # A modern replacement for ‘ls’
-    fzf # A command-line fuzzy finder
+    ripgrep
+    eza
     zoxide
-    thefuck
     tmux
 
-    # networking tools
-    #mtr # A network diagnostic tool
-    #iperf3
-    #dnsutils  # `dig` + `nslookup`
-    #ldns # replacement of `dig`, it provide the command `drill`
-    #aria2 # A lightweight multi-protocol & multi-source command-line download utility
-    #socat # replacement of openbsd-netcat
-    #nmap # A utility for network discovery and security auditing
-    ipcalc  # it is a calculator for the IPv4/v6 addresses
+    ipcalc
 
-    # misc
     cowsay
     file
     which
@@ -110,49 +99,31 @@ in
     zstd
     gnupg
 
-    # nix related
-    #
-    # it provides the command `nom` works just like `nix`
-    # with more details log output
+    # it provides the command `nom` works just like `nix` with more details log output
     nix-output-monitor
 
-    # productivity
-    #hugo # static site generator
     glow # markdown previewer in terminal
 
-    btop  # replacement of htop/nmon
-    iotop # io monitoring
-    iftop # network monitoring
+    btop
 
-    # system call monitoring
-    strace # system call monitoring
-    ltrace # library call monitoring
-    lsof # list open files
+    strace
 
-    # system tools
     sysstat
-    lm_sensors # for `sensors` command
-    ethtool
-    pciutils # lspci
-    usbutils # lsusb
-    #neovim
-    #nixvim
-    discord
-    webcord
-    pavucontrol
-    obs-studio
-    #xdg-desktop-portal-wlr
-    xdg-desktop-portal-hyprland
-    qt5Full
+    lm_sensors
+    pwvucontrol
+
     gst_all_1.gstreamer
-    obs-studio-plugins.wlrobs
-    brave
     ranger
     steam
-    spotify
     meson
     ninja
     gcc
+    glibc
+
+    (discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
 
     xclip
 
@@ -164,10 +135,14 @@ in
 
     plymouth
 
-    inputs.swww.packages.${pkgs.system}.swww
-    
-    dolphin
-    cinnamon.nemo-with-extensions
+    kdePackages.dolphin
+    kdePackages.ark
+    unzip
+    p7zip
+    gnutar
+    xz
+
+    nemo-with-extensions
     feh
     imlib2Full
     haruna
@@ -177,38 +152,114 @@ in
     eww
     spotifyd
     bash
-    (pkgs.callPackage "${hmmp}/fonts/feather-font.nix" { })
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Iosevka" "JetBrainsMono" ]; }) 
-    
+    (pkgs.callPackage "${cpaths.modules.fonts}/feather-font.nix" { })
+    (pkgs.callPackage "${cpaths.modules.home}/fonts/interceptor-font.nix" { })
+
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.iosevka
+    nerd-fonts.jetbrains-mono
+
     piper
     libratbag
 
     keepassxc
+    blueman
 
-    overskride
+    zls
 
-    libreoffice-qt
-    hunspell
-    hunspellDicts.uk_UA
-    hunspellDicts.th_TH
-    hunspellDicts.de_DE
-    obsidian 
-  ];
+    jetbrains.idea-oss
+    zulu17
+    monitor
 
-  #stylix.package = inputs.stylix.homeMangerModules.stylix;
+    heroic
+    wtype
 
-  #stylix.enable = true;
+    prismlauncher
 
-  #services.hyprpaper.enable = true;
+    krita
+    opentabletdriver
 
-  # This value determines the home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update home Manager without changing this value. See
-  # the home Manager release notes for a list of state version
-  # changes in each release.
+    gamescope
+
+    bottles
+
+    vscode
+    iverilog
+
+    libxkbcommon
+
+    qdirstat
+
+    protonup-qt
+
+    ffmpeg
+    signal-desktop
+
+    protontricks
+    # wine
+
+    steam-run
+
+    gthumb
+
+    kitty
+    timg
+    (pkgs.inkscape-with-extensions.override {
+      inkscapeExtensions = [
+      ];
+    })
+    # fontfinder
+
+    javaPackages.openjfx21
+    gtk3
+    libGL
+    xorg.libXxf86vm
+
+    libreoffice-qt6-fresh
+
+    spotify-cli-linux
+
+    mangohud
+    gamemode
+
+    kdePackages.kio
+    kdePackages.kio-extras
+    kdePackages.qtimageformats
+    kdePackages.kdesdk-thumbnailers
+    kdePackages.kdegraphics-thumbnailers
+    kdePackages.kimageformats
+    kdePackages.ffmpegthumbs
+    kdePackages.taglib
+    resvg
+
+    file-roller
+
+    xorg.xhost
+
+    llvm
+
+    qpwgraph
+    wineWowPackages.staging
+    # yabridge
+    # yabridgectl
+    # patchage
+
+    neovim
+    # clang
+    luarocks
+    lua5_1
+    gnumake
+    zig
+    zig-zlint
+    tree-sitter
+    tree-sitter-grammars.tree-sitter-zig 
+    anki-bin
+];
+  
+  # used to be zulu23, but deprecated. If Issues arise, revert.
+  home.file."jdks/zulu25".source = pkgs.zulu25;
+
   home.stateVersion = "23.11";
 
   # Let home Manager install and manage itself.

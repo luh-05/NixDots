@@ -141,7 +141,12 @@
           ]).sys;
         laptop =
           (mkHost "laptop" "x86_64-linux" [
+            ./hosts/shared/gpus/intel.nix
+            ./hosts/shared/cpus/intel.nix
             ./hosts/shared/kb-layouts/en_us.nix
+            ./hosts/shared/localization/locale/en_US.nix
+            ./hosts/shared/localization/formatting/de_DE.nix
+            ./hosts/shared/localization/time/europe-berlin.nix
           ]).sys;
       };
 

@@ -24,7 +24,6 @@ in
     #inputs.nixvim.homeManagerModules.nixvim
     # ./modules/neovim/neovim.nix
 
-    "${nmp}/alvr/default.nix"
     "${nmp}/starship/default.nix"
     "${hmmp}/spicetify/default.nix"
 
