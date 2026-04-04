@@ -55,8 +55,12 @@ in
         #disable_hyprland_logo = "true";
       };
 
-      experimental = {
-        xx_color_management_v4 = "true";
+      # experimental = {
+      #   xx_color_management_v4 = "true";
+      # };
+
+      render = {
+        cm_enabled = "true";
       };
 
       exec-once = [
@@ -138,17 +142,17 @@ in
         "$mod, f, fullscreen, 0"
         "$mod, d, fullscreen, 1"
         "$mod, v, togglefloating"
-        "$mod, Minus, splitratio, -0.1"
-        "$mod, Comma, splitratio, -0.1"
-        "$mod, Plus, splitratio, +0.1"
-        "$mod, Colon, splitratio, +0.1"
+        "$mod, Minus, layoutmsg, splitratio, -0.1"
+        "$mod, Comma, layoutmsg, splitratio, -0.1"
+        "$mod, Plus, layoutmsg, splitratio, +0.1"
+        "$mod, Colon, layoutmsg, splitratio, +0.1"
 
         # movement
         "$mod, h, movefocus, l"
         "$mod, j, movefocus, d"
         "$mod, k, movefocus, u"
         "$mod, l, movefocus, r"
-        "$mod, i, togglesplit"
+        "$mod, i, layoutmsg, togglesplit"
 
         # app bindings
         "$mod, return, exec, $term"
@@ -329,14 +333,18 @@ in
         dim_special = "0";
       };
 
-      windowrulev2 = [
-        #"float,class:^(cyberpunk2077.exe)$"
-        #"size 75% 75%,class:^(cyberpunk2077.exe)$"
-        "move 0 0,class:(flameshot),title:(flameshot)"
-        "pin,class:(flameshot),title:(flameshot)"
-        "fullscreen,class:(flameshot),title:(flameshot)"
-        "float,class:(flameshot),title:(flameshot)"
-        "noanim, class:hyprpanel"
+      # windowrulev2 = [
+      #   #"float,class:^(cyberpunk2077.exe)$"
+      #   #"size 75% 75%,class:^(cyberpunk2077.exe)$"
+      #   "move 0 0,class:(flameshot),title:(flameshot)"
+      #   "pin,class:(flameshot),title:(flameshot)"
+      #   "fullscreen,class:(flameshot),title:(flameshot)"
+      #   "float,class:(flameshot),title:(flameshot)"
+      #   "noanim, class:hyprpanel"
+      # ];
+
+      windowrule = [
+        "match:class hyperpanel, no_anim on"
       ];
     };
   };

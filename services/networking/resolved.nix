@@ -21,10 +21,9 @@ in
     #  "2620:fe::9"
     #];
 
-    # extraConfig = ''
-    #   DNS=9.9.9.9#dns.quad9.net 149.112.112.112#dns.quad9.net 2620:fe::fe#dns.quad9.net 2620:fe::9#dns.quad9.net
-    #   DNSOverTLS=yes
-    # '';
+    settings = {
+      Resolve.DNSOverTLS="false";
+    };
   };
   
   # networking.nameservers = [ "127.0.0.53" ];

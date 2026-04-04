@@ -74,24 +74,24 @@ in
     };
   };
 
-  networking.bridges = {
-    mylxdbr0.interfaces = [ ];
-  };
-  networking.localCommands = ''
-    ip address add 192.168.57.1/24 dev mylxdbr0
-  '';
-  networking.firewall.extraCommands = ''
-    iptables -A INPUT -i mylxdbr0 -m comment --comment "my rule for LXD network mylxdbr0" -j ACCEPT
-
-    # These three technically aren't needed, since by default the FORWARD and
-    # OUTPUT firewalls accept everything everything, but lets keep them in just
-    # in case.
-    iptables -A FORWARD -o mylxdbr0 -m comment --comment "my rule for LXD network mylxdbr0" -j ACCEPT
-    iptables -A FORWARD -i mylxdbr0 -m comment --comment "my rule for LXD network mylxdbr0" -j ACCEPT
-    iptables -A OUTPUT -o mylxdbr0 -m comment --comment "my rule for LXD network mylxdbr0" -j ACCEPT
-
-    iptables -t nat -A POSTROUTING -s 192.168.57.0/24 ! -d 192.168.57.0/24 -m comment --comment "my rule for LXD network mylxdbr0" -j MASQUERADE
-  '';
+  # networking.bridges = {
+  #   mylxdbr0.interfaces = [ ];
+  # };
+  # networking.localCommands = ''
+  #   ip address add 192.168.57.1/24 dev mylxdbr0
+  # '';
+  # networking.firewall.extraCommands = ''
+  #   iptables -A INPUT -i mylxdbr0 -m comment --comment "my rule for LXD network mylxdbr0" -j ACCEPT
+  #
+  #   # These three technically aren't needed, since by default the FORWARD and
+  #   # OUTPUT firewalls accept everything everything, but lets keep them in just
+  #   # in case.
+  #   iptables -A FORWARD -o mylxdbr0 -m comment --comment "my rule for LXD network mylxdbr0" -j ACCEPT
+  #   iptables -A FORWARD -i mylxdbr0 -m comment --comment "my rule for LXD network mylxdbr0" -j ACCEPT
+  #   iptables -A OUTPUT -o mylxdbr0 -m comment --comment "my rule for LXD network mylxdbr0" -j ACCEPT
+  #
+  #   iptables -t nat -A POSTROUTING -s 192.168.57.0/24 ! -d 192.168.57.0/24 -m comment --comment "my rule for LXD network mylxdbr0" -j MASQUERADE
+  # '';
   systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
   virtualisation = {
     waydroid.enable = false;
