@@ -16,7 +16,7 @@ in
     "${hmmp}/zsh/default.nix"
     "${hmmp}/tmux/default.nix"
     "${hmmp}/hyprland/laptop.nix"
-    "${hmmp}/niri/default.nix"
+    # "${hmmp}/niri/default.nix"
     "${hmmp}/niri/laptop.nix"
     "${hmmp}/wofi/default.nix"
     "${hmmp}/kitty/default.nix"
@@ -78,6 +78,8 @@ in
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     fastfetch
+
+    niri
 
     zip
     xz
