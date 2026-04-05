@@ -15,7 +15,9 @@ in
     "${hmmp}/git/git.nix"
     "${hmmp}/zsh/default.nix"
     "${hmmp}/tmux/default.nix"
-    "${hmmp}/hyprland/default.nix"
+    "${hmmp}/hyprland/laptop.nix"
+    "${hmmp}/niri/default.nix"
+    "${hmmp}/niri/laptop.nix"
     "${hmmp}/wofi/default.nix"
     "${hmmp}/kitty/default.nix"
     "${hmmp}/helix/default.nix"
@@ -182,7 +184,7 @@ in
 
     gamescope
 
-    bottles
+    # bottles
 
     vscode
     iverilog

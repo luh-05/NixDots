@@ -6,11 +6,11 @@
 
   hardware.graphics = {
     enable = true;
-    extraPackages = {
+    extraPackages = with pkgs; [
       # Only for Xe/ARC
-      intel-media-driver # VA-API userspace (iHD)
-      vpl-gpu-rt # oneVPL runtime (QSV)
-      intel-compute-runtime # OpenCL (NEO) + Level Zero
-    }; 
+      # intel-media-driver # VA-API userspace (iHD)
+      # vpl-gpu-rt # oneVPL runtime (QSV)
+      # intel-compute-runtime # OpenCL (NEO) + Level Zero
+    ]; 
   };
 }
