@@ -43,3 +43,11 @@ output "eDP-1" {
     top-left
   }
 }
+
+binds {
+  Mod+Enter { spawn "kitty"; }
+  Mod+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
+  Mod+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
+  Mod+q { close-window; }
+
+}

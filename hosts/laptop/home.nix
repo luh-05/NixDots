@@ -79,6 +79,8 @@ in
   home.packages = with pkgs; [
     fastfetch
 
+    networkmanagerapplet
+  
     niri
 
     zip
@@ -259,6 +261,8 @@ in
     tree-sitter
     tree-sitter-grammars.tree-sitter-zig 
     anki-bin
+
+    brightnessctl
 ];
   
   # used to be zulu23, but deprecated. If Issues arise, revert.

@@ -7,5 +7,8 @@
   ...
 }:
 {
-  home.file.".config/niri".source = ./hosts/laptop;
+  # home.file.".config/niri".source = config.lib.file.mkOutOfStoreSymlink lib.path.subpath.join [ 
+  #   /.
+  #   "/hosts/laptop" 
+  # ];
 }

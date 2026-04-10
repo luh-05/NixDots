@@ -188,6 +188,7 @@ in
 
         # special keys
         #"$mod, i, submap, insert"
+
       ]
       ++ (
         # workspaces
@@ -234,6 +235,8 @@ in
       bindle = [
         ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
         ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ",XF86MonBrightnessUp, exec, brightnessctl s 10%+" 
+        ",XF86MonBrightnessDown, exec, brightnessctl s 10%-" 
         "SHIFT, XF86AudioRaiseVolume, exec, playerctl volume 0.05+"
         "SHIFT, XF86AudioLowerVolume, exec, playerctl volume 0.05-"
         "$mod, home, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
