@@ -11,9 +11,14 @@
 let
   shared-config-path = ./../shared;
   scp = shared-config-path;
+
+  modules = [
+    "niri"
+  ];
 in
 {
-  imports = [
+  imports =
+    map (x: cpaths.root + "/modules/nixos/${x}/default.nix") modules ++ [
     ./hardware-configuration.nix
     ./services.nix
     ./config/boot.nix

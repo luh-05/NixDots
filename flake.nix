@@ -78,7 +78,7 @@
       # };
 
       cpaths = {
-        root = "/home/luh/.dots";
+        root = .;
         services = "${cpaths.root}/services";
         modules = {
           root = "${cpaths.root}/modules";
@@ -103,6 +103,7 @@
           specialArgs = {
             inherit inputs;
             inherit cpaths;
+            inherit hostName;
           };
           modules = [
             lix-module.nixosModules.lixFromNixpkgs

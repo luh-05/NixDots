@@ -8,20 +8,22 @@
 
 let
   home-manager-modules-path = ./../../modules/home-manager;
-  hmmp = home-manager-modules-path;
+  
+  modules = [
+    "git"
+    # "alacritty/default.nix"
+    "zsh"
+    "tmux"
+    "hyprland"
+    "wofi"
+    "kitty"
+    "helix"
+    # "${hmmp}/nvim/default.nix" 
+  ];
 in
 {
-  imports = [
-    "${hmmp}/git/git.nix"
-    "${hmmp}/alacritty/default.nix"
-    "${hmmp}/zsh/default.nix"
-    "${hmmp}/tmux/default.nix"
-    "${hmmp}/hyprland/default.nix"
-    "${hmmp}/wofi/default.nix"
-    "${hmmp}/kitty/default.nix"
-    "${hmmp}/helix/default.nix"
-    # "${hmmp}/nvim/default.nix"
-  ];
+  imports =
+    map (x: "${home-manager-modules-path}/${x}/default.nix") modules;
 
   home.username = "luh";
   home.homeDirectory = "/home/luh";
@@ -31,7 +33,7 @@ in
   # };
 
   home.file.".config/eww" = {
-    source = "${hmmp}/eww";
+      source = "${home-manager-modules-path}/eww";
     recursive = true;
     executable = true;
   };
