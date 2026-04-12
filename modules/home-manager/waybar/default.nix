@@ -13,6 +13,7 @@
   # };
   home.packages = with pkgs; [
     waybar
+    rofi # for system menu
   ];
 
   home.file.".config/waybar".source = config.lib.file.mkOutOfStoreSymlink "${cpaths.modules.home}/waybar/hosts/${hostName}/"; 

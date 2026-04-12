@@ -1,3 +1,6 @@
 [submodule "modules/home-manager/eww/adi1090x-widgets-spotify"]
 	path = modules/home-manager/eww/adi1090x-widgets-spotify
 	url = https://github.com/pu-la/adi1090x-widgets-spotify.git
+[submodule "modules/home-manager/waybar/hosts/default"]
+	path = modules/home-manager/waybar/hosts/default
+	url = git@github.com:benny-e/waybar-config.git
