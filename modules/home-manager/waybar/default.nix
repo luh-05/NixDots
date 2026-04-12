@@ -15,5 +15,5 @@
     waybar
   ];
 
-  home.file.".config/waybar".source = config.lib.file.mkOutOfStoreSymlink "{cpaths.modules.home}/waybar/hosts/${hostName}/";
+  home.file.".config/waybar".source = config.lib.file.mkOutOfStoreSymlink "${cpaths.modules.home}/waybar/hosts/${hostName}/"; 
 }
