@@ -4,6 +4,7 @@
   pkgs,
   options,
   inputs,
+  hostName,
   ...
 }:
 
@@ -22,6 +23,7 @@ in
   environment.variables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     WLR_RENDERER = "vulkan";
+    NIXOS_HOSTNAME = "${hostName}";
   };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 

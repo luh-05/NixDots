@@ -351,19 +351,10 @@ binds {
   XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
   XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
 
-  // German symbols
-  Mod+A { spawn-sh "wtype 'ä'"; }
-  Mod+O { spawn-sh "wtype 'ö'"; }
-  Mod+U { spawn-sh "wtype 'ü'"; }
-  Mod+S { spawn-sh "wtype 'ß'"; }
-  Mod+Shift+A { spawn-sh "wtype 'Ä'"; }
-  Mod+Shift+O { spawn-sh "wtype 'Ö'"; }
-  Mod+Shift+U { spawn-sh "wtype 'Ü'"; }
-
   // Open/close the Overview: a zoomed-out view of workspaces and windows.
   // You can also move the mouse into the top-left hot corner,
   // or do a four-finger swipe up on a touchpad.
-  Mod+P repeat=false { toggle-overview; }
+  Mod+O repeat=false { toggle-overview; }
 
   Mod+Q repeat=false { close-window; }
 
@@ -425,11 +416,11 @@ binds {
 
   Mod+Page_Down      { focus-workspace-down; }
   Mod+Page_Up        { focus-workspace-up; }
-  Mod+Y              { focus-workspace-down; }
+  Mod+U              { focus-workspace-down; }
   Mod+I              { focus-workspace-up; }
   Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
   Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
-  Mod+Ctrl+Y         { move-column-to-workspace-down; }
+  Mod+Ctrl+U         { move-column-to-workspace-down; }
   Mod+Ctrl+I         { move-column-to-workspace-up; }
 
   // Alternatively, there are commands to move just a single window:
@@ -438,7 +429,7 @@ binds {
 
   Mod+Shift+Page_Down { move-workspace-down; }
   Mod+Shift+Page_Up   { move-workspace-up; }
-  Mod+Shift+Y         { move-workspace-down; }
+  Mod+Shift+U         { move-workspace-down; }
   Mod+Shift+I         { move-workspace-up; }
 
   // You can bind mouse wheel scroll ticks using the following syntax.
@@ -580,8 +571,8 @@ binds {
   Ctrl+Print { screenshot-screen; }
   Alt+Print { screenshot-window; }
   Mod+Shift+S { screenshot; }
-  Mod+Control+S { screenshot-screen; }
-  Mod+Alt+S { screenshot-window; }
+  Mod+S { screenshot-screen; }
+  Mod+Control+S { screenshot-window; }
 
   // Applications such as remote-desktop clients and software KVM switches may
   // request that niri stops processing the keyboard shortcuts defined here

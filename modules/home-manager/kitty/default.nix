@@ -12,7 +12,7 @@
       #background_blur = 0;
       cursor_trail = 1;
       allow_lignatures = true;
-      font_size = 11;
+      font_size = 10;
     };
   };
 }

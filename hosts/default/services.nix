@@ -15,6 +15,7 @@ let
     "wm/xserver"
     "misc/ratbagd"
     "misc/cloudflare-warp"
+    "dm/ly"
   ];
 in
 {

@@ -35,6 +35,9 @@ in
     ./config/fonts.nix
     ./config/users.nix
     ./config/nix-ld.nix
+
+    ./config/activation-scripts/package-count.nix
+    ./config/activation-scripts/nixos-hostname.nix
   ];
 
   programs.xwayland.enable = true;
