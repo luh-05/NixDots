@@ -1,0 +1,10 @@
+{
+  "layer": "top",
+  "positon": "top",
+  "modules-left": ["niri/workspaces", "niri/mode"],
+  "modules-center": ["clock"],
+  "modules-right": ["cpu", "memory"],
+  "clock": {
+    "format": "{:%H:%M}"
+  }
+}

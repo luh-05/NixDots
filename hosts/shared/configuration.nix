@@ -34,6 +34,7 @@ in
     ./config/networking.nix
     ./config/fonts.nix
     ./config/users.nix
+    ./config/nix-ld.nix
   ];
 
   programs.xwayland.enable = true;

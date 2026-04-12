@@ -969,26 +969,6 @@
         "url": "https://git.lix.systems/lix-project/nixos-module/archive/2.91.3-1.tar.gz"
       }
     },
-    "nix-ld": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1773650902,
-        "narHash": "sha256-UnIRWlac4n6Kv48IeJ5Atjv61cOY3/eC+W9AnrPF3vo=",
-        "owner": "Mic92",
-        "repo": "nix-ld",
-        "rev": "0e73836dc3d9811288050b9b1905cc653a5e52c5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Mic92",
-        "repo": "nix-ld",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1772198003,
@@ -1155,7 +1135,6 @@
         "hyprland-contrib": "hyprland-contrib",
         "hyprlock": "hyprlock",
         "lix-module": "lix-module",
-        "nix-ld": "nix-ld",
         "nixpkgs": "nixpkgs_6",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",

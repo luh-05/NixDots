@@ -5,20 +5,23 @@
   options,
   inputs,
   cpaths,
+  hostName,
   ...
 }:
 
 let
+  userName = "luh";
+  
   shared-config-path = ./../shared;
   scp = shared-config-path;
 
   modules = [
-    "niri"
+    "swaylock"
   ];
 in
 {
   imports =
-    map (x: cpaths.root + "/modules/nixos/${x}/default.nix") modules ++ [
+    map (x: "${cpaths.modules.nixos}/${x}/default.nix") modules ++ [
     ./hardware-configuration.nix
     ./services.nix
     ./config/boot.nix
@@ -73,9 +76,10 @@ in
     extraSpecialArgs = {
       inherit inputs;
       inherit cpaths;
+      inherit hostName;
     };
     users = {
-      "luh" = import ./home.nix;
+      "${userName}" = import ./home.nix;
     };
   };
 

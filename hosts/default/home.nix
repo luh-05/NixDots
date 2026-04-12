@@ -19,6 +19,10 @@ let
     "kitty"
     "helix"
     # "${hmmp}/nvim/default.nix" 
+    "niri"
+    "fuzzel"
+    # "dms"
+    "waybar"
   ];
 in
 {
@@ -32,13 +36,11 @@ in
   #   source = ./scripts; recursive = true; # link recursively executable = true; # make all files executable
   # };
 
-  home.file.".config/eww" = {
-      source = "${home-manager-modules-path}/eww";
-    recursive = true;
-    executable = true;
-  };
-
-  wayland.windowManager.hyprland.xwayland.enable = true;
+  # home.file.".config/eww" = {
+  #   source = "${home-manager-modules-path}/eww";
+  #   recursive = true;
+  #   executable = true;
+  # };
 
   xdg.portal = {
     enable = true;
@@ -112,7 +114,8 @@ in
     glow # markdown previewer in terminal
 
     btop
-
+    steamcmd
+  
     strace
 
     sysstat
@@ -292,6 +295,8 @@ in
     tree-sitter
     tree-sitter-grammars.tree-sitter-zig 
     anki-bin
+
+    renderdoc
 ];
   
   # used to be zulu23, but deprecated. If Issues arise, revert.

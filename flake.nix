@@ -55,9 +55,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-ld.url = "github:Mic92/nix-ld";
-    # this line assume that you also have nixpkgs as an input
-    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
+    # nix-ld.url = "github:Mic92/nix-ld";
+    # # this line assume that you also have nixpkgs as an input
+    # nix-ld.inputs.nixpkgs.follows = "nixpkgs";
+
+    # dms = {
+    #   url = "github:AvengeMedia/DankMaterialShell/stable";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs =
@@ -68,7 +73,8 @@
       spicetify-nix,
       lix-module,
       zen-browser,
-      nix-ld,
+      # nix-ld,
+      # dms,
       ...
     }@inputs:
     let
@@ -78,7 +84,7 @@
       # };
 
       cpaths = {
-        root = .;
+        root = "/home/luh/.dots";
         services = "${cpaths.root}/services";
         modules = {
           root = "${cpaths.root}/modules";
@@ -111,12 +117,14 @@
             ./hosts/${hostName}/configuration.nix
             inputs.stylix.nixosModules.stylix
             inputs.spicetify-nix.nixosModules.default
+            # inputs.dms.homeModules.dank-material-shell
+            # inputs.dms.homeModules.niri
 
-            nix-ld.nixosModules.nix-ld
+            # nix-ld.nixosModules.nix-ld
 
             # The module in this repository defines a new module under (programs.nix-ld.dev) instead of (programs.nix-ld)
             # to not collide with the nixpkgs version.
-            { programs.nix-ld.dev.enable = true; }
+            # { programs.nix-ld.dev.enable = true; }
           ]
           ++ extraModules;
         };
