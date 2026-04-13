@@ -14,7 +14,11 @@
       main = {
         terminal = "${pkgs.kitty}/bin/kitty";
         layer = "overlay";
-      }; 
+        match-counter = "true";
+      };
+      border = {
+        radius = "0";
+      };
    };
   };
 }
