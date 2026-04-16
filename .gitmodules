@@ -3,4 +3,4 @@
 	url = https://github.com/pu-la/adi1090x-widgets-spotify.git
 [submodule "modules/home-manager/waybar/hosts/default"]
 	path = modules/home-manager/waybar/hosts/default
-	url = git@github.com:benny-e/waybar-config.git
+	url = git@github.com:luh-05/waybar-config.git
