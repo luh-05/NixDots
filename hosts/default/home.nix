@@ -121,11 +121,14 @@ in
     sysstat
     lm_sensors
     pwvucontrol
+    
+    winetricks
+    lutris
 
     gst_all_1.gstreamer
     brave
     ranger
-    steam
+    # steam
     meson
     ninja
     gcc
@@ -216,7 +219,6 @@ in
     ffmpeg
     signal-desktop
 
-    protontricks
     # wine
 
     steam-run
@@ -298,6 +300,12 @@ in
     anki-bin
 
     renderdoc
+    yad
+    xxd
+    xwininfo
+    xdotool
+    steamtinkerlaunch
+    bs-manager
 ];
   
   # used to be zulu23, but deprecated. If Issues arise, revert.

@@ -17,6 +17,8 @@ let
 
   modules = [
     "swaylock"
+    "alvr"
+    "steam"
   ];
 in
 {
