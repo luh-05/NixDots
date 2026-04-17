@@ -21,7 +21,7 @@ input {
   }
 
   tablet {
-    map-to-output "eDP-1"
+    map-to-output "PNP(HAT) Kamvas 13 0x01010101"
   }
 
   touch {
@@ -85,6 +85,15 @@ output "Samsung Electric Company C32F391 HTQM105661" {
   hot-corners {
     off 
     top-right
+  }
+}
+
+output "PNP(HAT) Kamvas 13 0x01010101" {
+  mode "1920x1080@60"
+  scale 1.0
+  position x=400 y=1440
+  hot-corners {
+    off 
   }
 }
 

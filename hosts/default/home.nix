@@ -306,6 +306,8 @@ in
     xdotool
     steamtinkerlaunch
     bs-manager
+
+    mono
 ];
   
   # used to be zulu23, but deprecated. If Issues arise, revert.
