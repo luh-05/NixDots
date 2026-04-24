@@ -46,7 +46,7 @@ in
   programs.xfconf.enable = true;
 
   services.flatpak.enable = true;
-  xdg.portal = {
+  xdg.portal = lib.mkDefault {
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk

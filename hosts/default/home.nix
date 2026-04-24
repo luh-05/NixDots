@@ -8,7 +8,7 @@
 
 let
   home-manager-modules-path = ./../../modules/home-manager;
-  
+
   modules = [
     "git"
     # "alacritty/default.nix"
@@ -18,16 +18,16 @@ let
     "wofi"
     "kitty"
     "helix"
-    # "${hmmp}/nvim/default.nix" 
+    # "${hmmp}/nvim/default.nix"
     "niri"
     "fuzzel"
     # "dms"
     "waybar"
+    "nvim"
   ];
 in
 {
-  imports =
-    map (x: "${home-manager-modules-path}/${x}/default.nix") modules;
+  imports = map (x: "${home-manager-modules-path}/${x}/default.nix") modules;
 
   home.username = "luh";
   home.homeDirectory = "/home/luh";
@@ -115,13 +115,13 @@ in
 
     btop
     steamcmd
-  
+
     strace
 
     sysstat
     lm_sensors
     pwvucontrol
-    
+
     winetricks
     lutris
 
@@ -296,7 +296,7 @@ in
     zig
     zig-zlint
     tree-sitter
-    tree-sitter-grammars.tree-sitter-zig 
+    tree-sitter-grammars.tree-sitter-zig
     anki-bin
 
     renderdoc
@@ -308,8 +308,10 @@ in
     bs-manager
 
     mono
-];
-  
+
+    proton-vpn
+  ];
+
   # used to be zulu23, but deprecated. If Issues arise, revert.
   home.file."jdks/zulu25".source = pkgs.zulu25;
 

@@ -55,6 +55,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ninecraft = {
+      url = "github:MCPI-Revival/Ninecraft";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # nix-ld.url = "github:Mic92/nix-ld";
     # # this line assume that you also have nixpkgs as an input
     # nix-ld.inputs.nixpkgs.follows = "nixpkgs";
@@ -73,6 +78,7 @@
       spicetify-nix,
       lix-module,
       zen-browser,
+      ninecraft,
       # nix-ld,
       # dms,
       ...
@@ -117,6 +123,7 @@
             ./hosts/${hostName}/configuration.nix
             inputs.stylix.nixosModules.stylix
             inputs.spicetify-nix.nixosModules.default
+            inputs.ninecraft.nixosModule
             # inputs.dms.homeModules.dank-material-shell
             # inputs.dms.homeModules.niri
 

@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "ancmp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1756362434,
+        "narHash": "sha256-uldMv32+ZpokeeSEIJ+IhV7Rg5xzt0Huh32TIYy4N/g=",
+        "owner": "MFDGaming",
+        "repo": "ancmp",
+        "rev": "f4b297220b271460faf80f82082cfe782d7ee76c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MFDGaming",
+        "repo": "ancmp",
+        "type": "github"
+      }
+    },
     "aquamarine": {
       "inputs": {
         "hyprutils": [
@@ -172,6 +188,24 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_6"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "flakey-profile": {
       "locked": {
         "lastModified": 1712898590,
@@ -222,6 +256,23 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "gitignore.nix",
+        "type": "github"
+      }
+    },
+    "glad": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1742979391,
+        "narHash": "sha256-NK2Ch5FInAwtWMTdzTumFzTWp4rytp4rUdVcaN78CXw=",
+        "owner": "Dav1dde",
+        "repo": "glad",
+        "rev": "56e406e90a802e963bb18d9c94cf6589e5a6b0a9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Dav1dde",
+        "repo": "glad",
+        "rev": "56e406e90a802e963bb18d9c94cf6589e5a6b0a9",
         "type": "github"
       }
     },
@@ -969,6 +1020,73 @@
         "url": "https://git.lix.systems/lix-project/nixos-module/archive/2.91.3-1.tar.gz"
       }
     },
+    "ninecraft": {
+      "inputs": {
+        "ancmp": "ancmp",
+        "flake-utils": "flake-utils_2",
+        "glad": "glad",
+        "ninecraft-mod-toolchain-build-scripts": "ninecraft-mod-toolchain-build-scripts",
+        "nixgl": "nixgl",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "stb": "stb"
+      },
+      "locked": {
+        "lastModified": 1756682519,
+        "narHash": "sha256-gA6NLk6JACYCgtE2IKoXfp5YR6xwp5M21iKaL4mBDHk=",
+        "owner": "MCPI-Revival",
+        "repo": "Ninecraft",
+        "rev": "0d952d682d1044689eebaed98cb451a975f75a7e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MCPI-Revival",
+        "repo": "Ninecraft",
+        "type": "github"
+      }
+    },
+    "ninecraft-mod-toolchain-build-scripts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1752121108,
+        "narHash": "sha256-T+JOXXvteuRmht5cGai90z7dEv6+DhBTRhezwaUgWCI=",
+        "owner": "MCPI-Revival",
+        "repo": "ninecraft-mod-toolchain-build-scripts",
+        "rev": "e3b3b84d5ce9a6a4a5da79b6846d79433ca95abf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MCPI-Revival",
+        "repo": "ninecraft-mod-toolchain-build-scripts",
+        "type": "github"
+      }
+    },
+    "nixgl": {
+      "inputs": {
+        "flake-utils": [
+          "ninecraft",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "ninecraft",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1752054764,
+        "narHash": "sha256-Ob/HuUhANoDs+nvYqyTKrkcPXf4ZgXoqMTQoCK0RFgQ=",
+        "owner": "nix-community",
+        "repo": "nixGL",
+        "rev": "a8e1ce7d49a149ed70df676785b07f63288f53c5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixGL",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1772198003,
@@ -1135,6 +1253,7 @@
         "hyprland-contrib": "hyprland-contrib",
         "hyprlock": "hyprlock",
         "lix-module": "lix-module",
+        "ninecraft": "ninecraft",
         "nixpkgs": "nixpkgs_6",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
@@ -1144,7 +1263,7 @@
     "spicetify-nix": {
       "inputs": {
         "nixpkgs": "nixpkgs_7",
-        "systems": "systems_6"
+        "systems": "systems_7"
       },
       "locked": {
         "lastModified": 1774157037,
@@ -1157,6 +1276,23 @@
       "original": {
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
+        "type": "github"
+      }
+    },
+    "stb": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1675018027,
+        "narHash": "sha256-s2ASdlT3bBNrqvwfhhN6skjbmyEnUgvNOrvhgUSRj98=",
+        "owner": "nothings",
+        "repo": "stb",
+        "rev": "5736b15f7ea0ffb08dd38af21067c314d6a3aae9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nothings",
+        "repo": "stb",
+        "rev": "5736b15f7ea0ffb08dd38af21067c314d6a3aae9",
         "type": "github"
       }
     },
@@ -1173,7 +1309,7 @@
           "nixpkgs"
         ],
         "nur": "nur",
-        "systems": "systems_7",
+        "systems": "systems_8",
         "tinted-foot": "tinted-foot",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",
@@ -1285,6 +1421,21 @@
       }
     },
     "systems_7": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_8": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
