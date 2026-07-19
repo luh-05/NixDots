@@ -16,7 +16,7 @@ in
     # Write information to /etc/xdg/openxr/1/active_runtime.json, VR applications
     # will automatically read this and work with WiVRn (Note: This does not currently
     # apply for games run in Valve's Proton)
-    defaultRuntime = false;
+    # defaultRuntime = false;
 
     # Run WiVRn as a systemd service on startup
     autoStart = true;
@@ -26,12 +26,20 @@ in
       enable = true;
       json = {
         # 1.0x foveation scaling
-        scale = 1.0;
-        # 100 Mb/s
-        bitrate = 100000000;
+        scale = 3.0;
+        foveation = {
+          enabled = true;
+          strength = 3.0;
+          center_override = [
+            0.0
+            0.0
+          ];
+        };
+        # 400 Mb/s
+        bitrate = 400000000;
         encoders = [
           {
-            encoder = "vaapi";
+            encoder = "nvenc";
             codec = "h265";
             # 1.0 x 1.0 scaling
             width = 1.0;

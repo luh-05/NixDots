@@ -1,27 +1,33 @@
-{ inputs, pkgs, ... } :
+{ inputs, pkgs, lib, config, ... } :
 
+let
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+in
 {
-  programs.spicetify =
-  let
-    spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-  in
-  {
-    enable = true;
+  options = {
+    spicetify.enable = lib.mkEnableOption "Enable Spicetify";
+  };
 
-    enabledExtensions = with spicePkgs.extensions; [
-      shuffle # shuffle+ (special characters are sanitized out of extension names)
-      bookmark
-      fullAppDisplay
-    ];
-    enabledCustomApps = with spicePkgs.apps; [
-      newReleases
-        #ncsVisualizer
-    ];
-    enabledSnippets = with spicePkgs.snippets; [
-      pointer
-    ];
+  config = lib.mkIf config.spicetify.enable {
+    programs.spicetify = 
+    {
+      enable = true;
 
-      #theme = spicePkgs.themes.catppuccin;
-      #colorScheme = "mocha";
+      enabledExtensions = with spicePkgs.extensions; [
+        shuffle # shuffle+ (special characters are sanitized out of extension names)
+        bookmark
+        fullAppDisplay
+      ];
+      enabledCustomApps = with spicePkgs.apps; [
+        newReleases
+          #ncsVisualizer
+      ];
+      enabledSnippets = with spicePkgs.snippets; [
+        pointer
+      ];
+
+        #theme = spicePkgs.themes.catppuccin;
+        #colorScheme = "mocha";
+    };
   };
 }

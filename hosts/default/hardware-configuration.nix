@@ -10,8 +10,9 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.kernelModules = [ "kvm-amd" "r8125" ];
+  boot.blacklistedKernelModules = [ "r8169" ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ r8125 ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/cd7d364d-d749-4f7b-ad77-40afece8faa9";

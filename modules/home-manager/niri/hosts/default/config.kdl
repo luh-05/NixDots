@@ -131,6 +131,12 @@ window-rule {
   open-floating true
 }
 
+window-rule {
+  match app-id="steam" title=r#"notificationtoasts*"#
+  open-focused false
+  default-floating-position x=4 y=4 relative-to="bottom-right"
+}
+
 // Indicate screencasted windows with red colors.
 window-rule {
     match is-window-cast-target=true

@@ -25,7 +25,7 @@ in
     # ./modules/neovim/neovim.nix
 
     "${nmp}/starship/default.nix"
-    "${hmmp}/spicetify/default.nix"
+    # "${hmmp}/spicetify/default.nix"
 
     ./services.nix
     ./config/boot.nix
@@ -47,7 +47,10 @@ in
   programs.zsh.enable = true;
   users.users.luh.shell = pkgs.zsh;
 
+  spicetify.enable = false;
+
   environment.systemPackages = with pkgs; [
+    spotify
     #neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     gphoto2
     v4l-utils
@@ -62,7 +65,7 @@ in
     vulkan-headers
     vulkan-loader
     vulkan-volk
-    vulkan-validation-layers
+    # vulkan-validation-layers
     wayland-scanner
     pkg-config
     wlroots
@@ -80,6 +83,7 @@ in
     obs-studio-plugins.wlrobs
     wayland
     waylandpp
+    libxkbcommon
     #xlib
     starship
     monado-vulkan-layers

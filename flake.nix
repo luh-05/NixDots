@@ -150,6 +150,7 @@
             ./hosts/shared/localization/formatting/de_DE.nix
             ./hosts/shared/localization/time/europe-berlin.nix
             ./hosts/shared/misc/bluetooth.nix
+            ./modules/home-manager/default.nix
             {
               environment.systemPackages = [
                 # customNeovim.neovim

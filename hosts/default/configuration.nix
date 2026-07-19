@@ -11,7 +11,7 @@
 
 let
   userName = "luh";
-  
+
   shared-config-path = ./../shared;
   scp = shared-config-path;
 
@@ -22,8 +22,7 @@ let
   ];
 in
 {
-  imports =
-    map (x: "${cpaths.modules.nixos}/${x}/default.nix") modules ++ [
+  imports = map (x: "${cpaths.modules.nixos}/${x}/default.nix") modules ++ [
     ./hardware-configuration.nix
     ./services.nix
     ./config/boot.nix
@@ -39,7 +38,7 @@ in
   ];
 
   programs.envision = {
-    enable = true;
+    enable = false;
     openFirewall = true; # This is set true by default
   };
 

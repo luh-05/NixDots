@@ -32,6 +32,8 @@ in
   home.username = "luh";
   home.homeDirectory = "/home/luh";
 
+  tmux.enable = true;
+
   # link all files in `./scripts` to `~/.config/i3/scripts` home.file.".config/i3/scripts" = {
   #   source = ./scripts; recursive = true; # link recursively executable = true; # make all files executable
   # };
@@ -58,6 +60,29 @@ in
   #     };
   #   };
   # };
+
+  # TEMP VR
+  #   xdg.configFile."openxr/1/active_runtime.json".source = "${pkgs.monado}/share/openxr/1/openxr_monado.json";
+  #
+  #   xdg.configFile."openvr/openvrpaths.vrpath".text = ''
+  #   {
+  #     "config" :
+  #     [
+  #       "${config.xdg.dataHome}/Steam/config"
+  #     ],
+  #     "external_drivers" : null,
+  #     "jsonid" : "vrpathreg",
+  #     "log" :
+  #     [
+  #       "${config.xdg.dataHome}/Steam/logs"
+  #     ],
+  #     "runtime" :
+  #     [
+  #       "${pkgs.opencomposite}/lib/opencomposite"
+  #     ],
+  #     "version" : 1
+  #   }
+  # '';
 
   home.sessionVariables = {
     XDG_CURRENT_DESKTOP = "Hyprland";
@@ -94,7 +119,6 @@ in
     ripgrep
     eza
     zoxide
-    tmux
 
     ipcalc
 
@@ -201,8 +225,6 @@ in
 
     cloudflare-warp
 
-    bottles
-
     vscode
     iverilog
 
@@ -223,7 +245,7 @@ in
 
     steam-run
 
-    nexusmods-app
+    # nexusmods-app
 
     gthumb
 
@@ -310,6 +332,15 @@ in
     mono
 
     proton-vpn
+    teamspeak6-client
+
+    cheese
+
+    steamtinkerlaunch
+    gamemode
+
+    # bottles
+    nero-umu
   ];
 
   # used to be zulu23, but deprecated. If Issues arise, revert.
