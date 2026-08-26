@@ -3,26 +3,41 @@
   pkgs,
   inputs,
   cpaths,
+  hostName,
   ...
 }:
 
 let
   home-manager-modules-path = ./../../modules/home-manager;
   hmmp = home-manager-modules-path;
+
+  modules = [
+    "git"
+    "zsh"
+    "tmux"
+    "wofi"
+    "kitty"
+    "niri"
+    "fuzzel"
+    "waybar"
+  ];
 in
 {
-  imports = [
-    "${hmmp}/git/git.nix"
-    "${hmmp}/zsh/default.nix"
-    "${hmmp}/tmux/default.nix"
-    "${hmmp}/hyprland/laptop.nix"
-    # "${hmmp}/niri/default.nix"
-    "${hmmp}/niri/laptop.nix"
-    "${hmmp}/wofi/default.nix"
-    "${hmmp}/kitty/default.nix"
-    "${hmmp}/helix/default.nix"
-    # "${hmmp}/nvim/default.nix"
-  ];
+  # imports = [
+  #   "${hmmp}/git/git.nix"
+  #   "${hmmp}/zsh/default.nix"
+  #   "${hmmp}/tmux/default.nix"
+  #   "${hmmp}/hyprland/laptop.nix"
+  #   # "${hmmp}/niri/default.nix"
+  #   "${hmmp}/niri/laptop.nix"
+  #   "${hmmp}/wofi/default.nix"
+  #   "${hmmp}/kitty/default.nix"
+  #   "${hmmp}/helix/default.nix"
+  #   # "${hmmp}/nvim/default.nix"
+  # ];
+  
+  imports =
+    map (x: "${home-manager-modules-path}/${x}/default.nix") modules;
 
   home.username = "luh";
   home.homeDirectory = "/home/luh";
@@ -39,29 +54,29 @@ in
 
   wayland.windowManager.hyprland.xwayland.enable = true;
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
-    ];
-    config = {
-      common = {
-        default = "wlr";
-        hyprland = [
-          "gtk"
-          "hyprland"
-        ];
-      };
-    };
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = with pkgs; [
+  #     xdg-desktop-portal-gtk
+  #     xdg-desktop-portal-wlr
+  #   ];
+  #   config = {
+  #     common = {
+  #       default = "wlr";
+  #       hyprland = [
+  #         "gtk"
+  #         "hyprland"
+  #       ];
+  #     };
+  #   };
+  # };
 
-  home.sessionVariables = {
-    XDG_CURRENT_DESKTOP = "Hyprland";
-    XDG_SESSION_TYPE = "wayland";
-    XDG_SESSION_DESKTOP = "Hyprland";
-    CPATH = "${pkgs.glibc}/include:$CPATH";
-  };
+  # home.sessionVariables = {
+  #   XDG_CURRENT_DESKTOP = "Hyprland";
+  #   XDG_SESSION_TYPE = "wayland";
+  #   XDG_SESSION_DESKTOP = "Hyprland";
+  #   CPATH = "${pkgs.glibc}/include:$CPATH";
+  # };
 
   # encode the file content in nix configuration file directly home.file.".xxx".text = ''
   #     xxx
@@ -120,16 +135,21 @@ in
 
     gst_all_1.gstreamer
     ranger
-    steam
+    # steam
+    # (steam-unwrapped.overrideAttrs (oldAttrs: {
+    #   buildInputs = oldAttrs.buildInputs ++ [ pkgs.gcc ];  
+    # }))
+    steamcmd
     meson
     ninja
     gcc
     glibc
 
-    (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
+    # (discord.override {
+    #   withOpenASAR = true;
+    #   withVencord = true;
+    # })
+    vesktop
 
     xclip
 
@@ -263,6 +283,19 @@ in
     anki-bin
 
     brightnessctl
+    # xf86-video-intel
+    # mesa
+    libgbm
+    libdrm
+    vulkan-tools
+    mesa-demos
+    xeyes
+    wl-mirror
+
+    linux-wifi-hotspot
+    arduino
+    arduino-ide
+    arduino-cli
 ];
   
   # used to be zulu23, but deprecated. If Issues arise, revert.

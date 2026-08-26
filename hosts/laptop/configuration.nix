@@ -5,10 +5,13 @@
   options,
   inputs,
   cpaths,
+  hostName,
   ...
 }:
 
 let
+  userName = "luh";
+
   shared-config-path = ./../shared;
   scp = shared-config-path;
 in
@@ -17,6 +20,7 @@ in
     ./hardware-configuration.nix
     ./services.nix
     ./config/boot.nix
+    "${cpaths.modules.nixos}/steam/default.nix"
   ];
 
   environment.systemPackages = [
@@ -31,7 +35,7 @@ in
   programs.xfconf.enable = true;
 
   services.flatpak.enable = true;
-  xdg.portal = {
+  xdg.portal = lib.mkDefault {
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
@@ -63,6 +67,8 @@ in
     extraSpecialArgs = {
       inherit inputs;
       inherit cpaths;
+      inherit userName;
+      inherit hostName;
     };
     users = {
       "luh" = import ./home.nix;

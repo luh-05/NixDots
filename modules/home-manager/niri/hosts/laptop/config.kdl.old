@@ -56,8 +56,18 @@ cursor {
   xcursor-size 24
 }
 
-output "eDP-1" {
-  mode "2560x1440@59.998"
+output "PNP(AOC) 32G1WG4 0x0000348F" {
+  mode "1920x1080@144.001"
+  scale 1.0
+  position x=-200 y=-1080
+  hot-corners {
+    off
+    top-left
+  }
+}
+
+output "Samsung Electric Company LC34G55T HNBX801797" {
+  mode "3440x1440@164.999"
   scale 1.0
   position x=0 y=0
   focus-at-startup
@@ -68,15 +78,42 @@ output "eDP-1" {
   }
 }
 
-output "PNP(AOC) U27B3AF ZXLQ8HA004113" {
-  mode "2560x1440@60.000"
+output "Samsung Electric Company C32F391 HTQM105661" {
+  mode "1920x1080@60"
   scale 1.0
-  position x=0 y=-1440
+  position x=1720 y=-1080
   hot-corners {
-    off
+    off 
+    top-right
   }
 }
 
+// Assign chat workspace to top left screen
+workspace "chat" {
+  open-on-output "PNP(AOC) 32G1WG4 0x0000348F"
+}
+// Assign music workspace to top right screen
+workspace "music" {
+  open-on-output "Samsung Electric Company C32F391 HTQM105661"
+}
+
+// Make chat apps open on chat workspace
+window-rule {
+  match app-id=r#"^discord$"#
+  match app-id=r#"^vesktop$"#
+  open-on-workspace "chat"
+  open-maximized true
+  open-focused false
+  // open-on-output "PNP(AOC) 32G1WG4 0x0000348F"
+}
+
+// Make music apps open on music workspace
+window-rule {
+  match app-id="spotify"
+  open-on-workspace "music"
+  open-maximized true
+  open-focused false
+}
 
 // Make blueman & pwvucontrol float by default
 window-rule {
@@ -117,7 +154,7 @@ prefer-no-csd
 
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 4
+    gaps 8
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -162,7 +199,7 @@ layout {
     // You can change how the focus ring looks.
     focus-ring {
         // Uncomment this line to disable the focus ring.
-        off
+        // off
 
         // How many logical pixels the ring extends out from the windows.
         width 4
@@ -203,7 +240,7 @@ layout {
     border {
         // The settings are the same as for the focus ring.
         // If you enable the border, you probably want to disable the focus ring.
-        // off
+        off
 
         width 4
         // active-color "#ffc87f"
@@ -314,19 +351,10 @@ binds {
   XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
   XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
 
-  // German symbols
-  Mod+A { spawn-sh "wtype 'ä'"; }
-  Mod+O { spawn-sh "wtype 'ö'"; }
-  Mod+U { spawn-sh "wtype 'ü'"; }
-  Mod+S { spawn-sh "wtype 'ß'"; }
-  Mod+Shift+A { spawn-sh "wtype 'Ä'"; }
-  Mod+Shift+O { spawn-sh "wtype 'Ö'"; }
-  Mod+Shift+U { spawn-sh "wtype 'Ü'"; }
-
   // Open/close the Overview: a zoomed-out view of workspaces and windows.
   // You can also move the mouse into the top-left hot corner,
   // or do a four-finger swipe up on a touchpad.
-  Mod+P repeat=false { toggle-overview; }
+  Mod+O repeat=false { toggle-overview; }
 
   Mod+Q repeat=false { close-window; }
 
@@ -361,6 +389,10 @@ binds {
   Mod+Shift+K     { focus-monitor-up; }
   Mod+Shift+L     { focus-monitor-right; }
 
+  Mod+Shift+1     { focus-monitor "PNP(AOC) 32G1WG4 0x0000348F"; }
+  Mod+Shift+2     { focus-monitor "Samsung Electric Company LC34G55T HNBX801797"; }
+  Mod+Shift+3     { focus-monitor "Samsung Electric Company C32F391 HTQM105661"; }
+
   Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
   Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
   Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
@@ -369,6 +401,10 @@ binds {
   Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
   Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
   Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+
+  Mod+Shift+Ctrl+1     { move-column-to-monitor "PNP(AOC) 32G1WG4 0x0000348F"; }
+  Mod+Shift+Ctrl+2     { move-column-to-monitor "Samsung Electric Company LC34G55T HNBX801797"; }
+  Mod+Shift+Ctrl+3     { move-column-to-monitor "Samsung Electric Company C32F391 HTQM105661"; }
   
   // Alternatively, there are commands to move just a single window:
   // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
@@ -380,11 +416,11 @@ binds {
 
   Mod+Page_Down      { focus-workspace-down; }
   Mod+Page_Up        { focus-workspace-up; }
-  Mod+D              { focus-workspace-down; }
+  Mod+U              { focus-workspace-down; }
   Mod+I              { focus-workspace-up; }
   Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
   Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
-  Mod+Ctrl+D         { move-column-to-workspace-down; }
+  Mod+Ctrl+U         { move-column-to-workspace-down; }
   Mod+Ctrl+I         { move-column-to-workspace-up; }
 
   // Alternatively, there are commands to move just a single window:
@@ -393,7 +429,7 @@ binds {
 
   Mod+Shift+Page_Down { move-workspace-down; }
   Mod+Shift+Page_Up   { move-workspace-up; }
-  Mod+Shift+D         { move-workspace-down; }
+  Mod+Shift+U         { move-workspace-down; }
   Mod+Shift+I         { move-workspace-up; }
 
   // You can bind mouse wheel scroll ticks using the following syntax.
@@ -535,8 +571,8 @@ binds {
   Ctrl+Print { screenshot-screen; }
   Alt+Print { screenshot-window; }
   Mod+Shift+S { screenshot; }
-  Mod+Control+S { screenshot-screen; }
-  Mod+Alt+S { screenshot-window; }
+  Mod+S { screenshot-screen; }
+  Mod+Control+S { screenshot-window; }
 
   // Applications such as remote-desktop clients and software KVM switches may
   // request that niri stops processing the keyboard shortcuts defined here

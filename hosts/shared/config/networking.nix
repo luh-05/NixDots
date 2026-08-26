@@ -4,13 +4,14 @@
   pkgs,
   options,
   inputs,
+  hostName,
   ...
 }:
 
 let
 in
 {
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos-${hostName}"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking

@@ -4,3 +4,6 @@
 [submodule "modules/home-manager/waybar/hosts/default"]
 	path = modules/home-manager/waybar/hosts/default
 	url = git@github.com:luh-05/waybar-config.git
+[submodule "modules/home-manager/waybar/hosts/laptop"]
+	path = modules/home-manager/waybar/hosts/laptop
+	url = git@github.com:luh-05/waybar-config.git

@@ -13,7 +13,7 @@
     xwayland-satellite
   ];
   
-  xdg.portal = {
+  xdg.portal = lib.mkForce {
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk

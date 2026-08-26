@@ -18,7 +18,7 @@ in
 {
   # wayland fixes
   environment.sessionVariables = {
-    LD_LIBRARY_PATH = lib.mkForce (lib.concatStringsSep ":" ldlp);
+    # LD_LIBRARY_PATH = lib.mkForce (lib.concatStringsSep ":" ldlp);
   };
   environment.variables = {
     WLR_NO_HARDWARE_CURSORS = "1";
@@ -28,5 +28,5 @@ in
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # other
-  environment.variables.EDITOR = "hx";
+  environment.variables.EDITOR = "nvim";
 }

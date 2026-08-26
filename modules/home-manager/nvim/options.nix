@@ -54,9 +54,9 @@ let
   buildEnv = [
     "CPATH=${hmConfig.home.profileDirectory}/lib/nvim-depends/include"
     "CPLUS_INCLUDE_PATH=${hmConfig.home.profileDirectory}/lib/nvim-depends/include/c++/v1"
-    "LD_LIBRARY_PATH=${hmConfig.home.profileDirectory}/lib/nvim-depends/lib"
-    "LIBRARY_PATH=${hmConfig.home.profileDirectory}/lib/nvim-depends/lib"
-    "NIX_LD_LIBRARY_PATH=${hmConfig.home.profileDirectory}/lib/nvim-depends/lib"
+    # "LD_LIBRARY_PATH=${hmConfig.home.profileDirectory}/lib/nvim-depends/lib"
+    # "LIBRARY_PATH=${hmConfig.home.profileDirectory}/lib/nvim-depends/lib"
+    # "NIX_LD_LIBRARY_PATH=${hmConfig.home.profileDirectory}/lib/nvim-depends/lib"
     "PKG_CONFIG_PATH=${hmConfig.home.profileDirectory}/lib/nvim-depends/pkgconfig"
   ];
 in {

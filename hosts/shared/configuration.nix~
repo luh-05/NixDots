@@ -41,7 +41,7 @@ in
   hardware.bluetooth.enable = true;
 
   environment.sessionVariables = {
-    LD_LIBRARY_PATH = "${pkgs.wayland}/lib:$LD_LIBRARY_PATH";
+    # LD_LIBRARY_PATH = "${pkgs.wayland}/lib:$LD_LIBRARY_PATH";
   };
 
 
@@ -62,14 +62,14 @@ in
   #  options = [ "rw" "uid=1000"];
   #};
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
-      xdg-desktop-portal-hyprland
-    ];
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = with pkgs; [
+  #     xdg-desktop-portal-gtk
+  #     xdg-desktop-portal-wlr
+  #     xdg-desktop-portal-hyprland
+  #   ];
+  # };
 
   programs.hyprland.enable = true;
 
