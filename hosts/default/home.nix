@@ -20,6 +20,7 @@ let
     "helix"
     # "${hmmp}/nvim/default.nix"
     "niri"
+    "noctalia"
     "fuzzel"
     # "dms"
     "waybar"
@@ -27,7 +28,9 @@ let
   ];
 in
 {
-  imports = map (x: "${home-manager-modules-path}/${x}/default.nix") modules;
+  imports = map (x: "${home-manager-modules-path}/${x}/default.nix") modules ++ [
+    inputs.noctalia.homeModules.default
+  ];
 
   home.username = "luh";
   home.homeDirectory = "/home/luh";
@@ -332,7 +335,6 @@ in
     mono
 
     proton-vpn
-    teamspeak6-client
 
     cheese
 
@@ -341,6 +343,10 @@ in
 
     # bottles
     nero-umu
+    wireshark
+
+    pciutils
+    usbutils
   ];
 
   # used to be zulu23, but deprecated. If Issues arise, revert.

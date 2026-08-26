@@ -9,7 +9,7 @@
       enable_audio_bell = false;
       mouse_hide_wait = "-1.0";
       #background_opacity = "0.9";
-      #background_blur = 0;
+      background_blur = 1;
       cursor_trail = 1;
       allow_lignatures = true;
       font_size = 10;

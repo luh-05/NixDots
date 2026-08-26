@@ -22,9 +22,10 @@ in
     #];
 
     settings = {
-      Resolve.DNSOverTLS="false";
+      Resolve.DNSOverTLS = "false";
+      Resolve.MulticastDNS = "false";
     };
   };
-  
+
   # networking.nameservers = [ "127.0.0.53" ];
 }

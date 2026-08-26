@@ -5,8 +5,10 @@
   ...
 }:
 let
-  sr = 192000;
-  q = 32;
+  sr = 48000;
+  q = 512;
+  # sr = 192000;
+  # q = 512;
 
   pulse = "${builtins.toString q}/${builtins.toString sr}";
 in
@@ -20,7 +22,12 @@ in
     nssmdns4 = true;
     nssmdns6 = true;
     openFirewall = true;
-
+    publish = {
+      enable = true;
+      addresses = true;
+      userServices = true;
+      workstation = true;
+    };
   };
 
   # services.shairport-sync = {
@@ -45,8 +52,62 @@ in
   #   };
   # };
 
+  users.users.shairport = {
+    isSystemUser = true;
+    extraGroups = [ "audio" ];
+  };
+
+  services.shairport-sync = {
+    enable = true;
+
+    user = "shairport";
+
+    settings = {
+      general = {
+        name = "NixOS Shairport";
+        output_backend = "pulseaudio";
+        mdns_backend = "avahi";
+      };
+      pulseaudio = {
+        server = "127.0.0.1";
+      };
+      alsa = {
+        # output_device = "plughw:1,0";
+        # output_device = "default";
+        # mixer_control_name = "PCM";
+      };
+    };
+    openFirewall = true;
+  };
+
+  # systemd.services.shairport-sync.environment = {
+  #   "XDG_RUNTIME_DIR" = "/run/user/1000";
+  # };
+
+  # networking.firewall = {
+  #   enable = true;
+  #   allowedTCPPorts = [
+  #     5000
+  #     7000
+  #   ];
+  #   allowedUDPPorts = [
+  #     5353
+  #     6000
+  #     6001
+  #     6002
+  #     6003
+  #     7000
+  #   ];
+  #   allowedUDPPortRanges = [
+  #     {
+  #       from = 6000;
+  #       to = 6010;
+  #     }
+  #   ];
+  # };
+
   services.pipewire = {
-    raopOpenFirewall = true;
+    # raopOpenFirewall = true;
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
@@ -57,17 +118,37 @@ in
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
+
+    extraConfig.pipewire-pulse."10-tcp" = {
+      "pulse.properties" = {
+        "server.address" = [
+          "unix:native"
+          "tcp:127.0.0.1:4713"
+        ];
+      };
+    };
   };
 
   services.pipewire.extraConfig.pipewire = {
     "92-low-latency" = {
-      context.properties = {
-        default.clock = {
-          rate = sr;
-          quantum = q;
-          min-quantum = q;
-          max-quantum = q;
-        };
+      "context.properties" = {
+        # "default.clock" = {
+        #   "rate" = sr;
+        #   "quantum" = q;
+        #   "min-quantum" = q;
+        #   "max-quantum" = q;
+        # };
+        "default.clock.rate" = sr;
+        "default.clock.allowed-rates" = [
+          44100
+          48000
+          88200
+          96000
+          192000
+        ];
+        "default.clock.quantum" = q;
+        "default.clock.min-quantum" = q;
+        "default.clock.max-quantum" = q;
       };
       pulse.properties = {
         pulse.min.req = pulse;
@@ -81,6 +162,21 @@ in
         resample.quality = 1;
       };
     };
+    "51-optical-limit" = {
+      "monitor.alsa.rules" = [
+        {
+          matches = [
+            {
+              "node.name" = "alsa_output.pci-0000_11_00.6.iec958-stereo";
+            }
+          ];
+        }
+      ];
+      actions = {
+        "audio.allowed-rates" = "[ 41000 48000 88200 96000 ]";
+        "audio.rate" = 48000;
+      };
+    };
     # "10-airplay" = {
     #   context.modules = [
     #     {
@@ -88,10 +184,10 @@ in
     #     }
     #   ];
     # };
-    "10-raop-discover" = {
-      context.properties = {
-
-      };
-    };
+    # "10-raop-discover" = {
+    #   context.properties = {
+    #
+    #   };
+    # };
   };
 }

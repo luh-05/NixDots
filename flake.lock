@@ -1172,6 +1172,26 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787057658,
+        "narHash": "sha256-a9OoMe12C+kCTP3t5rSPbKkL8fqIl3Y70A7KSVpn6fA=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "rev": "4742eeb218e255ce03be7dcf0a67f2ba001e8be1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -1230,6 +1250,7 @@
         "lix-module": "lix-module",
         "ninecraft": "ninecraft",
         "nixpkgs": "nixpkgs_6",
+        "noctalia": "noctalia",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
         "zen-browser": "zen-browser"

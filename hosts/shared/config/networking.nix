@@ -17,4 +17,6 @@ in
   networking.networkmanager.enable = true;
   #networking.networkmanager.dns = "systemd-resolved";
   #networking.interfaces.enp14s0u1.mtu = 1400;
+
+  hardware.enableRedistributableFirmware = true;
 }

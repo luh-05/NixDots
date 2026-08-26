@@ -13,6 +13,7 @@
     clang-tools
     cargo
   ];
-  
-  home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${cpaths.modules.home}/nvim/conf/"; 
+
+  home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${cpaths.modules.home}/nvim/conf/";
+  # home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./conf;
 }

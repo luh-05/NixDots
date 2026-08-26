@@ -44,6 +44,18 @@ in
 
   programs.xfconf.enable = true;
 
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
+
+  services.udev.enable = true;
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", ATTRS{idVendor}=="3837", ATTRS{idProduct}=="4018", MODE="0666", TAG+="uaccess"
+  '';
+
   services.flatpak.enable = true;
   xdg.portal = lib.mkDefault {
     enable = true;
