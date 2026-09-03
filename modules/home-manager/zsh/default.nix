@@ -14,7 +14,8 @@
 
     # set shell aliases
     shellAliases = {
-      update = "sudo NIXPKGS_ALLOW_INSECURE=1 nixos-rebuild switch --no-reexec --impure";
+      update = "nh os switch ~/.dots/ --impure";
+      # update = "sudo NIXPKGS_ALLOW_INSECURE=1 nixos-rebuild switch --no-reexec --impure";
       la = "eza -lA";
       # kimg = "/home/luh/.dots/modules/home-manager/zsh/kimg.sh";
     };
