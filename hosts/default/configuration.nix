@@ -54,6 +54,7 @@ in
   services.udev.enable = true;
   services.udev.extraRules = ''
     KERNEL=="hidraw*", ATTRS{idVendor}=="3837", ATTRS{idProduct}=="4018", MODE="0666", TAG+="uaccess"
+    ATTRS{idVendor}=="2341", ATTRS{idProduct}=="[08][023]*", MODE:="0666", ENV{ID_MM_DEVICE_IGNORE}="1", ENV{ID_MM_PORT_IGNORE}="1"
   '';
 
   services.flatpak.enable = true;

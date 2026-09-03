@@ -47,7 +47,16 @@ in
   programs.zsh.enable = true;
   users.users.luh.shell = pkgs.zsh;
 
-  spicetify.enable = false;
+  # spicetify.enable = false;
+
+  nix.package = pkgs.lix;
+
+  # Enable nh
+  programs.nh = {
+    enable = true;
+    clean.enable = false;
+    flake = "/home/yourusername/dotfiles";
+  };
 
   environment.systemPackages = with pkgs; [
     spotify
@@ -92,6 +101,7 @@ in
     ethtool
     mesa
     looking-glass-client
+    bash
   ];
 
   # dont change this
