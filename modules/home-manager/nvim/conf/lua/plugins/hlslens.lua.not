@@ -1,0 +1,9 @@
+-- TODO: configure this maybe
+
+-- return {
+--   "kevinhwang91/nvim-hlslens",
+--   lazy = false,
+--   keys = {
+--     {"n"}
+--   }
+-- }
