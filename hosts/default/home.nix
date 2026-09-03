@@ -347,6 +347,8 @@ in
 
     pciutils
     usbutils
+
+    oversteer
   ];
 
   # used to be zulu23, but deprecated. If Issues arise, revert.
