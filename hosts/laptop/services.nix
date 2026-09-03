@@ -13,6 +13,7 @@ let
     "misc/tumbler"
     "wm/xserver"
     "misc/ratbagd"
+    "dm/ly"
   ];
 in
 {

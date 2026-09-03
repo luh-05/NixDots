@@ -12,15 +12,19 @@ let
 in
 {
   imports = [
-    "${hmmp}/git/git.nix"
+    "${hmmp}/git/default.nix"
     "${hmmp}/zsh/default.nix"
     "${hmmp}/tmux/default.nix"
-    "${hmmp}/hyprland/laptop.nix"
+    # "${hmmp}/hyprland/laptop.nix"
     # "${hmmp}/niri/default.nix"
-    "${hmmp}/niri/laptop.nix"
+    "${hmmp}/niri/default.nix"
     "${hmmp}/wofi/default.nix"
     "${hmmp}/kitty/default.nix"
     "${hmmp}/helix/default.nix"
+    inputs.noctalia.homeModules.default
+    "${hmmp}/noctalia/default.nix"
+    "${hmmp}/nvim/default.nix"
+    "${hmmp}/fuzzel/default.nix"
     # "${hmmp}/nvim/default.nix"
   ];
 
@@ -31,6 +35,8 @@ in
   #   source = ./scripts; recursive = true; # link recursively executable = true; # make all files executable
   # };
 
+  tmux.enable = true;
+
   home.file.".config/eww" = {
     source = "${hmmp}/eww";
     recursive = true;
@@ -39,22 +45,22 @@ in
 
   wayland.windowManager.hyprland.xwayland.enable = true;
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
-    ];
-    config = {
-      common = {
-        default = "wlr";
-        hyprland = [
-          "gtk"
-          "hyprland"
-        ];
-      };
-    };
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = with pkgs; [
+  #     xdg-desktop-portal-gtk
+  #     xdg-desktop-portal-wlr
+  #   ];
+  #   config = {
+  #     common = {
+  #       default = "wlr";
+  #       hyprland = [
+  #         "gtk"
+  #         "hyprland"
+  #       ];
+  #     };
+  #   };
+  # };
 
   home.sessionVariables = {
     XDG_CURRENT_DESKTOP = "Hyprland";
@@ -263,6 +269,7 @@ in
     anki-bin
 
     brightnessctl
+    gimp
 ];
   
   # used to be zulu23, but deprecated. If Issues arise, revert.

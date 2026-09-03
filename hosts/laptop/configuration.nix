@@ -5,6 +5,7 @@
   options,
   inputs,
   cpaths,
+  hostName,
   ...
 }:
 
@@ -31,12 +32,19 @@ in
   programs.xfconf.enable = true;
 
   services.flatpak.enable = true;
-  xdg.portal = {
+  xdg.portal = lib.mkDefault {
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
   };
+
+  services.udev.enable = true;
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", ATTRS{idVendor}=="3837", ATTRS{idProduct}=="4018", MODE="0666", TAG+="uaccess"
+    ATTRS{idVendor}=="2341", ATTRS{idProduct}=="[08][023]*", MODE:="0666", ENV{ID_MM_DEVICE_IGNORE}="1", ENV{ID_MM_PORT_IGNORE}="1"
+    KERNEL=="hidraw*", ATTRS{idVendor}=="1b4f", ATTRS{idProduct}=="9206;", MODE="0666", ENV{ID_MM_DEVICE_IGNORE}="1", ENV{ID_MM_PORT_IGNORE}="1", TAG+="uaccess"
+  '';
 
   programs.thunar = {
     enable = true;
@@ -63,6 +71,7 @@ in
     extraSpecialArgs = {
       inherit inputs;
       inherit cpaths;
+      inherit hostName;
     };
     users = {
       "luh" = import ./home.nix;
